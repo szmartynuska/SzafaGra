@@ -44,6 +44,6 @@
             <icon src="res/drawable-hdpi/icon.png" density="hdpi" />
             <icon src="res/drawable-xhdpi/icon.png" density="xhdpi" />
             <icon src="res/drawable-xxhdpi/icon.png" density="xxhdpi" />
-            <icon src="res/drawable-xxxhdpi/icon.png" density="xxxhdpi" />      
+            <icon src="res/drawable-xxxhdpi/icon.png" density="xxxhdpi" />  <!--dodać jeszcze rozdzielczosci-->
         </platform>
     </widget>
