@@ -303,7 +303,8 @@ label {
     
 }
 
-#main {
+#main, #wardrobe-cats, #clothes, #liamneeson, 
+#lottery, #favs-all, #fav-set, #weather {
     background-color: #EBEBEB;
 }
 
