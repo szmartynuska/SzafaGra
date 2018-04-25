@@ -1,3 +1,3 @@
-$('#mobile-nav').click(function(event) {
+$('.navbar').click(function(event) {
   $('.nav').toggleClass('active');
 });
