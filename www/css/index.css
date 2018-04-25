@@ -4,16 +4,22 @@
 }
 
 @font-face {
-    font-family: 'Noto Sans';
-    src: url(../fonts/NotoSans-Regular.ttf);
+    font-family: 'NotoSans';
+    src: url('../fonts/NotoSans-Regular.ttf') format('truetype');
+    src: local('../fonts/NotoSans-Regular.ttf') format('truetype');
     
 }
+
+
 html,
 body {
   width: 100%;
   height: 100%;
 }
 
+body {
+    font-family: 'NotoSans';
+}
 
 /*login screen */
 
