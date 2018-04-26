@@ -1,49 +1,59 @@
 <?xml version='1.0' encoding='utf-8'?>
-    <widget 
-        id="SzafaGra" 
-        version="1.0.0" 
-        xmlns="http://www.w3.org/ns/widgets" 
-        xmlns:cdv="http://cordova.apache.org/ns/1.0">
-        
-        <name>Szafa Gra</name>
-        
-        <description>
+<widget id="pl.uek.SzafaGra" version="1.0.0" xmlns="http://www/res.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Szafa Gra</name>
+    <description>
             Aplikacja ma na celu wspomaganie podejmowania decyzji co do codziennego ubioru. 
         </description>
-
-        <content src="index.html" />
-        
-        <plugin name="cordova-plugin-splashscreen" spec="~5.0.2" />
-        <plugin name="cordova-plugin-camera" spec="~4.0.3" />
-           
-        <platform name="android" >
-            <allow-intent href="market:*" />
-            <preference name="android-minSdkVersion" value="14" />
-            <preference name="android-targetSdkVersion" value="22" />
-            <preference name="SplashScreen" value="splash" />
-            <preference name="SplashScreenDelay" value="3000" />
-            <preference name="ShowSplashScreenSpinner" value="false" />
-            <preference name="FadeSplashScreen" value="false" />
-            <preference name="SplashMaintainAspectRatio" value="true" />
-            <preference name="SplashShowOnlyFirstTime" value="false" />
-            <preference name="SplashShowOnlyFirstTime" value="false" />
-
-            <splash qualifier="land-mdpi" src="res/drawable-mdpi/splash.png" />
-            <splash qualifier="land-hdpi" src="res/drawable-hdpi/splash.png" />
-            <splash qualifier="land-xhdpi" src="res/drawable-xhdpi/splash.png" />
-            <splash qualifier="land-xxhdpi" src="res/drawable-xxhdpi/splash.png" />
-            <splash qualifier="land-xxxhdpi" src="res/drawable-xxxhdpi/splash.png" />
-            <splash qualifier="port-mdpi" src="res/drawable-mdpi/splash.png" />
-            <splash qualifier="port-hdpi" src="res/drawable-hdpi/splash.png" />
-            <splash qualifier="port-xhdpi" src="res/drawable-xhdpi/splash.png" />
-            <splash qualifier="port-xxhdpi" src="res/drawable-xxhdpi/splash.png" />
-            <splash qualifier="port-xxxhdpi" src="res/drawable-xxxhdpi/splash.png" />
-
-            
-            <icon src="res/drawable-mdpi/icon.png" density="mdpi" />
-            <icon src="res/drawable-hdpi/icon.png" density="hdpi" />
-            <icon src="res/drawable-xhdpi/icon.png" density="xhdpi" />
-            <icon src="res/drawable-xxhdpi/icon.png" density="xxhdpi" />
-            <icon src="res/drawable-xxxhdpi/icon.png" density="xxxhdpi" />  <!--dodać jeszcze rozdzielczosci-->
-        </platform>
-    </widget>
+    <content src="index.html" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <preference name="android-minSdkVersion" value="20" />
+        <preference name="android-targetSdkVersion" value="24" />
+        <preference name="SplashScreen" value="splash" />
+        <preference name="SplashScreenDelay" value="3000" />
+        <preference name="ShowSplashScreenSpinner" value="false" />
+        <preference name="FadeSplashScreen" value="false" />
+        <preference name="SplashMaintainAspectRatio" value="true" />
+        <preference name="SplashShowOnlyFirstTime" value="false" />
+        <preference name="SplashShowOnlyFirstTime" value="false" />
+        <preference name="AndroidLaunchMode" value="singleTask" />
+        <splash qualifier="land-mdpi" src="www/res/drawable-mdpi/splash.png" />
+        <splash qualifier="land-hdpi" src="www/res/drawable-hdpi/splash.png" />
+        <splash qualifier="land-xhdpi" src="www/res/drawable-xhdpi/splash.png" />
+        <splash qualifier="land-xxhdpi" src="www/res/drawable-xxhdpi/splash.png" />
+        <splash qualifier="land-xxxhdpi" src="www/res/drawable-xxxhdpi/splash.png" />
+        <splash qualifier="port-mdpi" src="www/res/drawable-mdpi/splash.png" />
+        <splash qualifier="port-hdpi" src="www/res/drawable-hdpi/splash.png" />
+        <splash qualifier="port-xhdpi" src="www/res/drawable-xhdpi/splash.png" />
+        <splash qualifier="port-xxhdpi" src="www/res/drawable-xxhdpi/splash.png" />
+        <splash qualifier="port-xxxhdpi" src="www/res/drawable-xxxhdpi/splash.png" />
+        <icon density="mdpi" src="www/res/drawable-mdpi/icon.png" />
+        <icon density="hdpi" src="www/res/drawable-hdpi/icon.png" />
+        <icon density="xhdpi" src="www/res/drawable-xhdpi/icon.png" />
+        <icon density="xxhdpi" src="www/res/drawable-xxhdpi/icon.png" />
+        <icon density="xxxhdpi" src="www/res/drawable-xxxhdpi/icon.png" />
+    </platform>
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <plugin name="cordova-plugin-splashscreen" spec="~5.0.2" />
+    <plugin name="cordova-plugin-camera" spec="~4.0.3" />
+    <plugin name="cordova-plugin-buildinfo" spec="^2.0.1" />
+    <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
+    <plugin name="cordova-plugin-customurlscheme" spec="^4.3.0">
+        <variable name="URL_SCHEME" value="com.firebase.cordova" />
+        <variable name="ANDROID_SCHEME" value=" " />
+        <variable name="ANDROID_HOST" value=" " />
+        <variable name="ANDROID_PATHPREFIX" value="/" />
+    </plugin>
+    <plugin name="cordova-universal-links-plugin" spec="^1.2.1" />
+    <universal-links>
+        <host name="https://ndx5q.app.goo.gl" scheme="https" />
+        <host name="szafagra-e1f0c.firebaseapp.com" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
+    </universal-links>
+    <plugin name="cordova-plugin-firebase-authentication" spec="^0.13.2">
+        <variable name="FIREBASE_VERSION" value="11.6.+" />
+    </plugin>
+    <engine name="android" spec="^7.0.0" />
+</widget>

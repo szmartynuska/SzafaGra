@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="pl.uek.SzafaGra" version="1.0.0" xmlns="http://www/res.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="BrowserTab">
+        <param name="android-package" value="com.google.cordova.plugin.browsertab.BrowserTab" />
+    </feature>
+    <feature name="BuildInfo">
+        <param name="android-package" value="org.apache.cordova.buildinfo.BuildInfo" />
+    </feature>
+    <feature name="Camera">
+        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+    </feature>
+    <feature name="LaunchMyApp">
+        <param name="android-package" value="nl.xservices.plugins.LaunchMyApp" />
+    </feature>
+    <feature name="FirebaseAuthentication">
+        <param name="android-package" value="by.chemerisuk.cordova.firebase.FirebaseAuthenticationPlugin" />
+        <param name="onload" value="false" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="UniversalLinks">
+        <param name="android-package" value="com.nordnetab.cordova.ul.UniversalLinksPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <name>Szafa Gra</name>
+    <description>
+            Aplikacja ma na celu wspomaganie podejmowania decyzji co do codziennego ubioru. 
+        </description>
+    <content src="index.html" />
+    <universal-links>
+        <host name="https://ndx5q.app.goo.gl" scheme="https" />
+        <host name="szafagra-e1f0c.firebaseapp.com" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
+    </universal-links>
+    <allow-intent href="market:*" />
+    <splash qualifier="land-mdpi" src="www/res/drawable-mdpi/splash.png" />
+    <splash qualifier="land-hdpi" src="www/res/drawable-hdpi/splash.png" />
+    <splash qualifier="land-xhdpi" src="www/res/drawable-xhdpi/splash.png" />
+    <splash qualifier="land-xxhdpi" src="www/res/drawable-xxhdpi/splash.png" />
+    <splash qualifier="land-xxxhdpi" src="www/res/drawable-xxxhdpi/splash.png" />
+    <splash qualifier="port-mdpi" src="www/res/drawable-mdpi/splash.png" />
+    <splash qualifier="port-hdpi" src="www/res/drawable-hdpi/splash.png" />
+    <splash qualifier="port-xhdpi" src="www/res/drawable-xhdpi/splash.png" />
+    <splash qualifier="port-xxhdpi" src="www/res/drawable-xxhdpi/splash.png" />
+    <splash qualifier="port-xxxhdpi" src="www/res/drawable-xxxhdpi/splash.png" />
+    <icon density="mdpi" src="www/res/drawable-mdpi/icon.png" />
+    <icon density="hdpi" src="www/res/drawable-hdpi/icon.png" />
+    <icon density="xhdpi" src="www/res/drawable-xhdpi/icon.png" />
+    <icon density="xxhdpi" src="www/res/drawable-xxhdpi/icon.png" />
+    <icon density="xxxhdpi" src="www/res/drawable-xxxhdpi/icon.png" />
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="android-minSdkVersion" value="20" />
+    <preference name="android-targetSdkVersion" value="24" />
+    <preference name="SplashScreen" value="splash" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="FadeSplashScreen" value="false" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="AndroidLaunchMode" value="singleTask" />
+</widget>
