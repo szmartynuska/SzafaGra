@@ -1,3 +1,8 @@
+var user;
+var wardrobe;
+var category;
+
+
 function init() {
     document.addEventListener('deviceready', onDeviceReady, false);
 }
@@ -29,8 +34,11 @@ btnSignUp.addEventListener('click', function () {
 
     if (password === passwordConfirm) {
         cordova.plugins.firebase.auth.createUserWithEmailAndPassword(email, password).then(function () {
+
             alert("Account created");
             window.location.href = "#login";
+
+
         }).catch(function (error) {
             alert(error);
         });
@@ -50,10 +58,9 @@ btnLogin.addEventListener('click', e => {
         return;
     }
     cordova.plugins.firebase.auth.signInWithEmailAndPassword(email, password)
-        .then(function (user) {
-            console.log("user id " + user.uid); //działa
-            window.location.href = "#main";
-
+        .then(function (result) {
+        	user = result.uid;
+            window.location.href = "#main";             
         }).catch(function (error) {
             alert(error);
         });
@@ -165,13 +172,27 @@ $(document).ready(function () {
         }));
 
 
-        var someText = "Wardrobe " + img_index;
-        $('.menu-wardrobe').append(someText);
+        wardrobe  = "Wardrobe " + img_index;
+       
+        $('.menu-wardrobe').append(wardrobe);
 
         img_index++;
 
     });
 
     $('#war-nr').append(img_index);
+
+    $('#wear span').click(function () {
+      	 
+      	category = $(this).attr("id");
+      	
+    });
+
+    $('#addImage').click(function () { // dodawanie zdjecia, wysyłka do bazy? 
+        
+      console.log(user);
+      console.log(wardrobe);
+      console.log(category);
+    });
 
 });

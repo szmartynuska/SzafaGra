@@ -12,6 +12,10 @@
         "source": "C:\\Users\\asiat\\Desktop\\SzafaGra\\platforms\\android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_previous_item.png"
     },
     {
+        "merged": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_next_item.png.flat",
+        "source": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_next_item.png"
+    },
+    {
         "merged": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_googleg_standard_color_18.png.flat",
         "source": "C:\\Users\\Patrycja01\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\395b88c6e49b31e2c33ab4f51dd985f5\\res\\drawable-xhdpi-v4\\googleg_standard_color_18.png"
     },
@@ -84,6 +88,10 @@
         "source": "C:\\Users\\asiat\\Desktop\\git\\hello\\LastCordova\\platforms\\android\\app\\src\\main\\res\\mipmap-xhdpi\\icon.png"
     },
     {
+        "merged": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_remove.png.flat",
+        "source": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_remove.png"
+    },
+    {
         "merged": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
         "source": "C:\\Users\\Patrycja01\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\395b88c6e49b31e2c33ab4f51dd985f5\\res\\drawable-mdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
     },
@@ -114,6 +122,10 @@
     {
         "merged": "C:\\Users\\asiat\\Desktop\\git\\hello\\LastCordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_dark.xml.flat",
         "source": "C:\\Users\\asiat\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\dc0e29297df8fe3099e8c5b105da0b12\\res\\drawable\\common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_next_item.png.flat",
+        "source": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_next_item.png"
     },
     {
         "merged": "C:\\Users\\asiat\\Desktop\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_googleg_standard_color_18.png.flat",
@@ -180,6 +192,10 @@
         "source": "C:\\Users\\Patrycja01\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\395b88c6e49b31e2c33ab4f51dd985f5\\res\\drawable-mdpi-v4\\googleg_disabled_color_18.png"
     },
     {
+        "merged": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_previous_item.png.flat",
+        "source": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_previous_item.png"
+    },
+    {
         "merged": "C:\\Users\\asiat\\Desktop\\git\\hello\\LastCordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
         "source": "C:\\Users\\asiat\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\dc0e29297df8fe3099e8c5b105da0b12\\res\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
     },
@@ -190,6 +206,10 @@
     {
         "merged": "C:\\Users\\asiat\\Desktop\\git\\hello\\LastCordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_googleg_disabled_color_18.png.flat",
         "source": "C:\\Users\\asiat\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\dc0e29297df8fe3099e8c5b105da0b12\\res\\drawable-mdpi-v4\\googleg_disabled_color_18.png"
+    },
+    {
+        "merged": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_previous_item.png.flat",
+        "source": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_previous_item.png"
     },
     {
         "merged": "C:\\Users\\asiat\\Desktop\\git\\hello\\LastCordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_common_google_signin_btn_text_dark.xml.flat",
@@ -288,6 +308,10 @@
         "source": "C:\\Users\\asiat\\Desktop\\SzafaGra\\platforms\\android\\app\\src\\main\\res\\mipmap-hdpi\\icon.png"
     },
     {
+        "merged": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_previous_item.png.flat",
+        "source": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_previous_item.png"
+    },
+    {
         "merged": "C:\\Users\\asiat\\Desktop\\git\\hello\\LastCordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
         "source": "C:\\Users\\asiat\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\dc0e29297df8fe3099e8c5b105da0b12\\res\\drawable-hdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
     },
@@ -342,6 +366,10 @@
     {
         "merged": "C:\\Users\\asiat\\Desktop\\git\\hello\\LastCordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_googleg_disabled_color_18.png.flat",
         "source": "C:\\Users\\asiat\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\dc0e29297df8fe3099e8c5b105da0b12\\res\\drawable-xxhdpi-v4\\googleg_disabled_color_18.png"
+    },
+    {
+        "merged": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_remove.png.flat",
+        "source": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_remove.png"
     },
     {
         "merged": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_googleg_standard_color_18.png.flat",
@@ -508,6 +536,10 @@
         "source": "C:\\Users\\Patrycja01\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\395b88c6e49b31e2c33ab4f51dd985f5\\res\\drawable\\common_google_signin_btn_text_light.xml"
     },
     {
+        "merged": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_previous_item.png.flat",
+        "source": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_previous_item.png"
+    },
+    {
         "merged": "C:\\Users\\asiat\\Desktop\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
         "source": "C:\\Users\\asiat\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\dc0e29297df8fe3099e8c5b105da0b12\\res\\drawable-mdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png"
     },
@@ -536,6 +568,10 @@
         "source": "C:\\Users\\asiat\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\dc0e29297df8fe3099e8c5b105da0b12\\res\\drawable-xhdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png"
     },
     {
+        "merged": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_next_item.png.flat",
+        "source": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_next_item.png"
+    },
+    {
         "merged": "C:\\Users\\asiat\\Desktop\\git\\hello\\LastCordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
         "source": "C:\\Users\\asiat\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\dc0e29297df8fe3099e8c5b105da0b12\\res\\drawable-hdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
     },
@@ -556,6 +592,10 @@
         "source": "C:\\Users\\Patrycja01\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\395b88c6e49b31e2c33ab4f51dd985f5\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
+        "merged": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_remove.png.flat",
+        "source": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_remove.png"
+    },
+    {
         "merged": "C:\\Users\\asiat\\Desktop\\git\\hello\\LastCordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_full_open_on_phone.png.flat",
         "source": "C:\\Users\\asiat\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\dc0e29297df8fe3099e8c5b105da0b12\\res\\drawable-xhdpi-v4\\common_full_open_on_phone.png"
     },
@@ -574,6 +614,10 @@
     {
         "merged": "C:\\Users\\asiat\\Desktop\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_googleg_disabled_color_18.png.flat",
         "source": "C:\\Users\\asiat\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\dc0e29297df8fe3099e8c5b105da0b12\\res\\drawable-xxhdpi-v4\\googleg_disabled_color_18.png"
+    },
+    {
+        "merged": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_remove.png.flat",
+        "source": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_remove.png"
     },
     {
         "merged": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-xxhdpi_screen.png.flat",
@@ -630,6 +674,10 @@
     {
         "merged": "C:\\Users\\asiat\\Desktop\\git\\hello\\LastCordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
         "source": "C:\\Users\\asiat\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\dc0e29297df8fe3099e8c5b105da0b12\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_next_item.png.flat",
+        "source": "C:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_next_item.png"
     },
     {
         "merged": "C:\\Users\\asiat\\Desktop\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_previous_item.png.flat",
