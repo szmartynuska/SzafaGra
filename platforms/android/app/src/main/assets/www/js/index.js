@@ -12,6 +12,8 @@ const txtPasswordConfirmRegistration = document.getElementById('txtPasswordConfi
 const txtPasswordRegistration = document.getElementById('txtPasswordRegistration');
 const txtEmailRegistration = document.getElementById('txtEmailRegistration');
 const btnSignUp = document.getElementById('btnSignUp');
+const btnFacebookLogin = document.getElementById('btnFacebookLogin');
+const btnLogOut = document.getElementById('btnLogOut');
 
 // Sign up with email and password
 btnSignUp.addEventListener('click', function () {
@@ -27,7 +29,6 @@ btnSignUp.addEventListener('click', function () {
 
     if (password === passwordConfirm) {
         cordova.plugins.firebase.auth.createUserWithEmailAndPassword(email, password).then(function () {
-            alert("You sign in!");
             alert("Account created");
             window.location.href = "#login";
         }).catch(function (error) {
@@ -39,7 +40,6 @@ btnSignUp.addEventListener('click', function () {
 
 });
 
-
 //Login with email and password
 btnLogin.addEventListener('click', e => {
     const email = txtEmailLogin.value;
@@ -49,7 +49,6 @@ btnLogin.addEventListener('click', e => {
         alert("Fill in all fields");
         return;
     }
-
     cordova.plugins.firebase.auth.signInWithEmailAndPassword(email, password)
         .then(function (user) {
             console.log("user id " + user.uid); //działa
@@ -64,15 +63,10 @@ btnLogin.addEventListener('click', e => {
 
 //Login with Google
 btnGoogleLogin.addEventListener('click', e => {
-    console.log(firebase);
     var provider = new firebase.auth.GoogleAuthProvider();
-    console.log(provider);
-    // console.log(firebase.auth().signInWithRedirect(provider));
     firebase.auth().signInWithRedirect(provider)
         .then(function () {
-            const result = firebase.auth().getRedirectResult();
-            console.log(result);
-            return result;
+            return firebase.auth().getRedirectResult();;
 
         }).then(function (result) {
             // This gives you a Google Access Token.
@@ -90,11 +84,46 @@ btnGoogleLogin.addEventListener('click', e => {
         });
 });
 
+//Login with Facebook
+btnFacebookLogin.addEventListener('click', e => {
+    var provider = new firebase.auth.FacebookAuthProvider();
+    console.log(provider);
+    firebase.auth().signInWithRedirect(provider).then(function () {
+        return firebase.auth().getRedirectResult()
+            .then(function (result) {
+                if (result.credential) {
+                    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+                    var token = result.credential.accessToken;
+                    // ...
+                }
+                // The signed-in user info.
+                var user = result.user;
+                window.location.href = "#main";
+            }).catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
+            });
+    })
 
+});
 
-
-
-
+//Sign out
+btnLogOut.addEventListener('click', e => {
+    const sign = firebase.auth().signOut();
+    console.log(sign);
+    sign.then(function () {
+        // Sign-out successful.
+        window.location.href = "#login";
+    }).catch(function (error) {
+        // An error happened.
+    });
+});
 
 
 //Mobile navigation
