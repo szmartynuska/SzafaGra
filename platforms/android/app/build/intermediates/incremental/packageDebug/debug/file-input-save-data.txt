@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed May 02 19:06:35 CEST 2018
+#Wed May 02 20:41:49 CEST 2018
 175.set=ANDROID_RESOURCE
 122.file=C\:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\assets\\debug\\www\\static\\styles\\fontawesome\\css\\fontawesome.min.css
 60.set=ASSET
