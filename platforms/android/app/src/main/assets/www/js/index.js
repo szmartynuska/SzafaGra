@@ -18,12 +18,19 @@ btnSignUp.addEventListener('click', function () {
     const email = txtEmailRegistration.value;
     const password = txtPasswordRegistration.value;
     const passwordConfirm = txtPasswordConfirmRegistration.value;
-    alert(password);
 
-    if (password === passwordConfirm) {
+    if(password == "" || passwordConfirm == "" || email == "")
+    {
+        alert("Fill in all fields");
+        return;
+    }
+
+    if ( password === passwordConfirm) {
         cordova.plugins.firebase.auth.createUserWithEmailAndPassword(email, password).then(function () {
-            alert("You sign in!");
+            alert("Account created");
             window.location.href = "#login";
+        }).catch(function(error) {
+                alert(error);          
         });
     } else {
         alert("Wrong password");
@@ -37,6 +44,7 @@ btnLogin.addEventListener('click', e => {
     const email = txtEmailLogin.value;
     const password = txtPasswordLogin.value;
 
+<<<<<<< HEAD
     if (password != "" && email != "") {
         cordova.plugins.firebase.auth.signInWithEmailAndPassword(email, password)
             .then(function (user) {
@@ -57,7 +65,23 @@ btnLogin.addEventListener('click', e => {
     }
     else {
         alert("Uzupełnij wszystkie pola");
+=======
+    if(password == "" || email == "")
+    {
+        alert("Fill in all fields");
+        return;
+>>>>>>> 8ac5daad1b2f12c3d98ffeb74e9998647a4bde48
     }
+
+    cordova.plugins.firebase.auth.signInWithEmailAndPassword(email, password)
+    .then(function (user) {
+        console.log("user id " + user.uid); //działa
+        window.location.href = "#main";
+
+    }).catch(function(error) {
+            alert(error); 
+    });
+    
 });
 
 
