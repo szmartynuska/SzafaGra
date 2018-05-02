@@ -19,20 +19,18 @@ btnSignUp.addEventListener('click', function () {
     const password = txtPasswordRegistration.value;
     const passwordConfirm = txtPasswordConfirmRegistration.value;
 
-    if (password === passwordConfirm) {
-    if(password == "" || passwordConfirm == "" || email == "")
-    {
+
+    if (password == "" || passwordConfirm == "" || email == "") {
         alert("Fill in all fields");
         return;
     }
 
-    if ( password === passwordConfirm) {
+    if (password === passwordConfirm) {
         cordova.plugins.firebase.auth.createUserWithEmailAndPassword(email, password).then(function () {
-            alert("You sign in!");
             alert("Account created");
             window.location.href = "#login";
-        }).catch(function(error) {
-                alert(error);          
+        }).catch(function (error) {
+            alert(error);
         });
     } else {
         alert("Wrong password");
@@ -40,41 +38,33 @@ btnSignUp.addEventListener('click', function () {
 
 });
 
-
 //Login with email and password
 btnLogin.addEventListener('click', e => {
     const email = txtEmailLogin.value;
     const password = txtPasswordLogin.value;
 
-    if(password == "" || email == "")
-    {
+    if (password == "" || email == "") {
         alert("Fill in all fields");
         return;
     }
-
     cordova.plugins.firebase.auth.signInWithEmailAndPassword(email, password)
-    .then(function (user) {
-        console.log("user id " + user.uid); //działa
-        window.location.href = "#main";
+        .then(function (user) {
+            console.log("user id " + user.uid); //działa
+            window.location.href = "#main";
 
-    }).catch(function(error) {
-            alert(error); 
-    });
-    
+        }).catch(function (error) {
+            alert(error);
+        });
+
 });
 
 
 //Login with Google
 btnGoogleLogin.addEventListener('click', e => {
-    console.log(firebase);
     var provider = new firebase.auth.GoogleAuthProvider();
-    console.log(provider);
-    // console.log(firebase.auth().signInWithRedirect(provider));
     firebase.auth().signInWithRedirect(provider)
         .then(function () {
-            const result = firebase.auth().getRedirectResult();
-            console.log(result);
-            return result;
+            return firebase.auth().getRedirectResult();;
 
         }).then(function (result) {
             // This gives you a Google Access Token.
@@ -91,13 +81,6 @@ btnGoogleLogin.addEventListener('click', e => {
             var errorMessage = error.message;
         });
 });
-
-
-
-
-
-
-
 
 //Mobile navigation
 $(document).ready(function () {

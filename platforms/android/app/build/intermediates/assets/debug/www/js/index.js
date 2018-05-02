@@ -19,18 +19,19 @@ btnSignUp.addEventListener('click', function () {
     const password = txtPasswordRegistration.value;
     const passwordConfirm = txtPasswordConfirmRegistration.value;
 
-    if(password == "" || passwordConfirm == "" || email == "")
-    {
+
+    if (password == "" || passwordConfirm == "" || email == "") {
         alert("Fill in all fields");
         return;
     }
 
-    if ( password === passwordConfirm) {
+    if (password === passwordConfirm) {
         cordova.plugins.firebase.auth.createUserWithEmailAndPassword(email, password).then(function () {
+            alert("You sign in!");
             alert("Account created");
             window.location.href = "#login";
-        }).catch(function(error) {
-                alert(error);          
+        }).catch(function (error) {
+            alert(error);
         });
     } else {
         alert("Wrong password");
@@ -44,44 +45,20 @@ btnLogin.addEventListener('click', e => {
     const email = txtEmailLogin.value;
     const password = txtPasswordLogin.value;
 
-<<<<<<< HEAD
-    if (password != "" && email != "") {
-        cordova.plugins.firebase.auth.signInWithEmailAndPassword(email, password)
-            .then(function (user) {
-                console.log("user id " + user.uid); //działa
-                window.location.href = "#main";
-
-            }).catch(function (error) {
-                if (error == "There is no user record corresponding to this identifier. The user may have been deleted.") {
-                    alert("Podano niewłaściwy mail");
-                }
-                else if (error == "The password is invalid or the user does not have a password.") {
-                    alert("Niewłaściwe hasło");
-                }
-                else if (error == "The email address is badly formatted.") {
-                    alert("Zły format maila");
-                }
-            });
-    }
-    else {
-        alert("Uzupełnij wszystkie pola");
-=======
-    if(password == "" || email == "")
-    {
+    if (password == "" || email == "") {
         alert("Fill in all fields");
         return;
->>>>>>> 8ac5daad1b2f12c3d98ffeb74e9998647a4bde48
     }
 
     cordova.plugins.firebase.auth.signInWithEmailAndPassword(email, password)
-    .then(function (user) {
-        console.log("user id " + user.uid); //działa
-        window.location.href = "#main";
+        .then(function (user) {
+            console.log("user id " + user.uid); //działa
+            window.location.href = "#main";
 
-    }).catch(function(error) {
-            alert(error); 
-    });
-    
+        }).catch(function (error) {
+            alert(error);
+        });
+
 });
 
 
@@ -98,13 +75,11 @@ btnGoogleLogin.addEventListener('click', e => {
             return result;
 
         }).then(function (result) {
-            alert("Coś");
             // This gives you a Google Access Token.
             // You can use it to access the Google API.
             var token = result.credential.accessToken;
             // The signed-in user info.
             var user = result.user;
-            console.log('Hello');
             // console.log(user);
             window.location.href = "#main";
             // ...
