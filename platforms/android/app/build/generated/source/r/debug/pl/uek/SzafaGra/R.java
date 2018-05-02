@@ -110,10 +110,7 @@ public final class R {
     public static final int common_google_signin_btn_text_light_normal_background=0x7f030012;
     public static final int googleg_disabled_color_18=0x7f030013;
     public static final int googleg_standard_color_18=0x7f030014;
-    public static final int ic_action_next_item=0x7f030015;
-    public static final int ic_action_previous_item=0x7f030016;
-    public static final int ic_action_remove=0x7f030017;
-    public static final int screen=0x7f030018;
+    public static final int screen=0x7f030015;
   }
   public static final class id {
     public static final int adjust_height=0x7f040000;
@@ -296,7 +293,6 @@ public final class R {
     public static final int SignInButton_scopeUris=2;
   }
   public static final class xml {
-    public static final int camera_provider_paths=0x7f090000;
-    public static final int config=0x7f090001;
+    public static final int config=0x7f090000;
   }
 }

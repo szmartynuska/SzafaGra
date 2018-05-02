@@ -1,10 +1,20 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="pl.uek.SzafaGra" version="1.0.0" xmlns="http://www/res.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Szafa Gra</name>
+<widget id="pl.uek.SzafaGra" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>SzafaGra</name>
     <description>
-            Aplikacja ma na celu wspomaganie podejmowania decyzji co do codziennego ubioru. 
-        </description>
+Aplikacja ma na celu wspomaganie podejmowania decyzji co do codziennego ubioru.     </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
     <content src="index.html" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="android-minSdkVersion" value="20" />
@@ -17,43 +27,35 @@
         <preference name="SplashShowOnlyFirstTime" value="false" />
         <preference name="SplashShowOnlyFirstTime" value="false" />
         <preference name="AndroidLaunchMode" value="singleTask" />
-        <splash qualifier="land-mdpi" src="www/res/drawable-mdpi/splash.png" />
-        <splash qualifier="land-hdpi" src="www/res/drawable-hdpi/splash.png" />
-        <splash qualifier="land-xhdpi" src="www/res/drawable-xhdpi/splash.png" />
-        <splash qualifier="land-xxhdpi" src="www/res/drawable-xxhdpi/splash.png" />
-        <splash qualifier="land-xxxhdpi" src="www/res/drawable-xxxhdpi/splash.png" />
-        <splash qualifier="port-mdpi" src="www/res/drawable-mdpi/splash.png" />
-        <splash qualifier="port-hdpi" src="www/res/drawable-hdpi/splash.png" />
-        <splash qualifier="port-xhdpi" src="www/res/drawable-xhdpi/splash.png" />
-        <splash qualifier="port-xxhdpi" src="www/res/drawable-xxhdpi/splash.png" />
-        <splash qualifier="port-xxxhdpi" src="www/res/drawable-xxxhdpi/splash.png" />
-        <icon density="mdpi" src="www/res/drawable-mdpi/icon.png" />
-        <icon density="hdpi" src="www/res/drawable-hdpi/icon.png" />
-        <icon density="xhdpi" src="www/res/drawable-xhdpi/icon.png" />
-        <icon density="xxhdpi" src="www/res/drawable-xxhdpi/icon.png" />
-        <icon density="xxxhdpi" src="www/res/drawable-xxxhdpi/icon.png" />
+        <splash density="land-hdpi" src="res/screen/android/splash-land-hdpi.png" />
+        <splash density="land-mdpi" src="res/screen/android/splash-land-mdpi.png" />
+        <splash density="land-xhdpi" src="res/screen/android/splash-land-xhdpi.png" />
+        <splash density="land-xxhdpi" src="res/screen/android/splash-land-xxhdpi.png" />
+        <splash density="land-xxxhdpi" src="res/screen/android/splash-land-xxxhdpi.png" />
+        <icon density="mdpi" src="res/icon/android/mdpi.png" />
+        <icon density="hdpi" src="res/icon/android/hdpi.png" />
+        <icon density="xhdpi" src="res/icon/android/xhdpi.png" />
+        <icon density="xhdpi" src="res/icon/android/xxhdpi.png" />
+        <icon density="xhdpi" src="res/icon/android/xxxhdpi.png" />
     </platform>
-    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
-    <plugin name="cordova-plugin-splashscreen" spec="~5.0.2" />
-    <plugin name="cordova-plugin-camera" spec="~4.0.3" />
-    <plugin name="cordova-plugin-buildinfo" spec="^2.0.1" />
-    <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
-    <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
-    <plugin name="cordova-plugin-customurlscheme" spec="^4.3.0">
-        <variable name="URL_SCHEME" value="com.firebase.cordova" />
-        <variable name="ANDROID_SCHEME" value=" " />
-        <variable name="ANDROID_HOST" value=" " />
-        <variable name="ANDROID_PATHPREFIX" value="/" />
-    </plugin>
-    <plugin name="cordova-universal-links-plugin" spec="^1.2.1" />
     <universal-links>
         <host name="https://ndx5q.app.goo.gl" scheme="https" />
         <host name="szafagra-e1f0c.firebaseapp.com" scheme="https">
             <path url="/__/auth/callback" />
         </host>
     </universal-links>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <plugin name="cordova-plugin-buildinfo" spec="^2.0.1" />
+    <plugin name="cordova-universal-links-plugin" spec="^1.2.1" />
+    <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
+    <plugin name="cordova-plugin-customurlscheme" spec="^4.3.0">
+        <variable name="URL_SCHEME" value="com.firebase.cordova" />
+    </plugin>
     <plugin name="cordova-plugin-firebase-authentication" spec="^0.13.2">
         <variable name="FIREBASE_VERSION" value="11.6.+" />
     </plugin>
-    <engine name="android" spec="^7.0.0" />
 </widget>

@@ -7,36 +7,11 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-browsertab": {
-      "PACKAGE_NAME": "pl.uek.SzafaGra"
-    },
-    "cordova-plugin-buildinfo": {
-      "PACKAGE_NAME": "pl.uek.SzafaGra"
-    },
-    "cordova-plugin-camera": {
-      "PACKAGE_NAME": "pl.uek.SzafaGra"
-    },
-    "cordova-plugin-customurlscheme": {
-      "URL_SCHEME": "com.firebase.cordova",
-      "ANDROID_SCHEME": " ",
-      "ANDROID_HOST": " ",
-      "ANDROID_PATHPREFIX": "/",
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "pl.uek.SzafaGra"
     },
     "cordova-plugin-firebase-authentication": {
       "FIREBASE_VERSION": "11.6.+",
-      "PACKAGE_NAME": "pl.uek.SzafaGra"
-    },
-    "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "pl.uek.SzafaGra"
-    },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "pl.uek.SzafaGra"
-    },
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "pl.uek.SzafaGra"
-    },
-    "cordova-universal-links-plugin": {
       "PACKAGE_NAME": "pl.uek.SzafaGra"
     }
   },
