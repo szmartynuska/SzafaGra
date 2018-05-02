@@ -1,4 +1,4 @@
-#Wed May 02 14:03:13 CEST 2018
-base.0=C\:\\Users\\asiat\\Desktop\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+#Wed May 02 19:06:35 CEST 2018
+base.0=C\:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 renamed.0=classes.dex
-file.0=C\:\\Users\\asiat\\Desktop\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0\\classes.dex
+file.0=C\:\\Users\\Patrycja01\\Downloads\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0\\classes.dex

@@ -37,12 +37,32 @@ btnLogin.addEventListener('click', e => {
     const email = txtEmailLogin.value;
     const password = txtPasswordLogin.value;
 
-    cordova.plugins.firebase.auth.signInWithEmailAndPassword(email, password)
-        .then(function (userInfo) {
+    if (password != "" && email != "")
+    {
+        cordova.plugins.firebase.auth.signInWithEmailAndPassword(email, password)
+        .then(function (user) {
+            console.log("user id " + user.uid); //działa
             window.location.href = "#main";
 
-            alert(userInfo);
+        }).catch(function(error) {
+            if(error == "There is no user record corresponding to this identifier. The user may have been deleted.")
+            {
+                alert("Podano niewłaściwy mail");
+            }
+            else if(error == "The password is invalid or the user does not have a password.")
+            {
+                alert("Niewłaściwe hasło");
+            }
+            else if (error == "The email address is badly formatted.")
+            {
+                alert("Zły format maila");
+            }
         });
+    }
+    else
+    {
+        alert("Uzupełnij wszystkie pola");
+    }
 });
 
 
