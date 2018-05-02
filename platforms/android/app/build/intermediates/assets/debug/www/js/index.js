@@ -37,34 +37,59 @@ btnLogin.addEventListener('click', e => {
     const email = txtEmailLogin.value;
     const password = txtPasswordLogin.value;
 
-    if (password != "" && email != "")
-    {
+    if (password != "" && email != "") {
         cordova.plugins.firebase.auth.signInWithEmailAndPassword(email, password)
-        .then(function (user) {
-            console.log("user id " + user.uid); //działa
-            window.location.href = "#main";
+            .then(function (user) {
+                console.log("user id " + user.uid); //działa
+                window.location.href = "#main";
 
-        }).catch(function(error) {
-            if(error == "There is no user record corresponding to this identifier. The user may have been deleted.")
-            {
-                alert("Podano niewłaściwy mail");
-            }
-            else if(error == "The password is invalid or the user does not have a password.")
-            {
-                alert("Niewłaściwe hasło");
-            }
-            else if (error == "The email address is badly formatted.")
-            {
-                alert("Zły format maila");
-            }
-        });
+            }).catch(function (error) {
+                if (error == "There is no user record corresponding to this identifier. The user may have been deleted.") {
+                    alert("Podano niewłaściwy mail");
+                }
+                else if (error == "The password is invalid or the user does not have a password.") {
+                    alert("Niewłaściwe hasło");
+                }
+                else if (error == "The email address is badly formatted.") {
+                    alert("Zły format maila");
+                }
+            });
     }
-    else
-    {
+    else {
         alert("Uzupełnij wszystkie pola");
     }
 });
 
+
+//Login with Google
+btnGoogleLogin.addEventListener('click', e => {
+    console.log(firebase);
+    var provider = new firebase.auth.GoogleAuthProvider();
+    console.log(provider);
+    // console.log(firebase.auth().signInWithRedirect(provider));
+    firebase.auth().signInWithRedirect(provider)
+        .then(function () {
+            const result = firebase.auth().getRedirectResult();
+            console.log(result);
+            return result;
+
+        }).then(function (result) {
+            alert("Coś");
+            // This gives you a Google Access Token.
+            // You can use it to access the Google API.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            console.log('Hello');
+            // console.log(user);
+            window.location.href = "#main";
+            // ...
+        }).catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+        });
+});
 
 
 

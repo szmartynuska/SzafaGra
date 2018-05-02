@@ -13,6 +13,25 @@
     "cordova-plugin-firebase-authentication": {
       "FIREBASE_VERSION": "11.6.+",
       "PACKAGE_NAME": "pl.uek.SzafaGra"
+    },
+    "cordova-universal-links-plugin": {
+      "PACKAGE_NAME": "pl.uek.SzafaGra"
+    },
+    "cordova-plugin-buildinfo": {
+      "PACKAGE_NAME": "pl.uek.SzafaGra"
+    },
+    "cordova-plugin-browsertab": {
+      "PACKAGE_NAME": "pl.uek.SzafaGra"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "pl.uek.SzafaGra"
+    },
+    "cordova-plugin-customurlscheme": {
+      "URL_SCHEME": "com.firebase.cordova",
+      "ANDROID_SCHEME": " ",
+      "ANDROID_HOST": " ",
+      "ANDROID_PATHPREFIX": "/",
+      "PACKAGE_NAME": "pl.uek.SzafaGra"
     }
   },
   "dependent_plugins": {

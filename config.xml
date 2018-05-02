@@ -48,14 +48,17 @@ Aplikacja ma na celu wspomaganie podejmowania decyzji co do codziennego ubioru. 
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <plugin name="cordova-plugin-buildinfo" spec="^2.0.1" />
+    <plugin name="cordova-plugin-firebase-authentication" spec="^0.13.2">
+        <variable name="FIREBASE_VERSION" value="11.6.+" />
+    </plugin>
     <plugin name="cordova-universal-links-plugin" spec="^1.2.1" />
+    <plugin name="cordova-plugin-buildinfo" spec="^2.0.1" />
     <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
     <plugin name="cordova-plugin-customurlscheme" spec="^4.3.0">
         <variable name="URL_SCHEME" value="com.firebase.cordova" />
-    </plugin>
-    <plugin name="cordova-plugin-firebase-authentication" spec="^0.13.2">
-        <variable name="FIREBASE_VERSION" value="11.6.+" />
+        <variable name="ANDROID_SCHEME" value=" " />
+        <variable name="ANDROID_HOST" value=" " />
+        <variable name="ANDROID_PATHPREFIX" value="/" />
     </plugin>
 </widget>

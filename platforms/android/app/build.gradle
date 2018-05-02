@@ -92,6 +92,8 @@ ext {
 
 // PLUGIN GRADLE EXTENSIONS START
 apply from: "../cordova-support-google-services/SzafaGra-build.gradle"
+apply from: "../cordova-plugin-buildinfo/SzafaGra-BuildInfo.gradle"
+apply from: "../cordova-plugin-browsertab/SzafaGra-BrowserTab.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras = file('build-extras.gradle').exists()
@@ -261,6 +263,7 @@ dependencies {
     // SUB-PROJECT DEPENDENCIES START
     implementation(project(path: ":CordovaLib"))
     compile "com.google.firebase:firebase-auth:11.6.+"
+    compile "com.android.support:customtabs:23.3.0"
     // SUB-PROJECT DEPENDENCIES END
 }
 
