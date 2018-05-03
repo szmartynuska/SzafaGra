@@ -427,7 +427,7 @@ label {
     
 }*/
 
-.dropup > #buttons > li {
+.dropup > #btnFloatingAction > li {
     list-style-type: none;
     margin: 10px;
 }
@@ -446,7 +446,7 @@ label {
     font-size: 20px;
 }
 
-#buttons
+#btnFloatingAction
 {
     position:fixed;
     width: 70px;
@@ -548,3 +548,4 @@ p {
     text-align: center;
     color: #786D6D;
 }
+
