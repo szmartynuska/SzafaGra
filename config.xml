@@ -61,4 +61,5 @@ Aplikacja ma na celu wspomaganie podejmowania decyzji co do codziennego ubioru. 
         <variable name="ANDROID_HOST" value=" " />
         <variable name="ANDROID_PATHPREFIX" value="/" />
     </plugin>
+    <plugin name="cordova-plugin-camera" spec="^4.0.3" />
 </widget>
