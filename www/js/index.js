@@ -53,7 +53,7 @@ btnLogin.addEventListener('click', e => {
     }
     cordova.plugins.firebase.auth.signInWithEmailAndPassword(email, password)
         .then(function (user) {
-        	user = result.uid;
+            user = result.uid;
             window.location.href = "#main";
         }).catch(function (error) {
             alert(error);
@@ -111,7 +111,7 @@ btnFacebookLogin.addEventListener('click', e => {
 
 
 //Sign out
-btnLogOut.addEventListener('click', e => {
+function logOut() {
     firebase.auth().signOut()
         .then(function () {
             // Sign-out successful.
@@ -119,7 +119,8 @@ btnLogOut.addEventListener('click', e => {
         }).catch(function (error) {
             console.log(error.message);
         });
-});
+}
+
 
 
 //Take picture from gallery
@@ -129,8 +130,7 @@ function openFilePicker(selection) {
     const options = setOptions(srcType);
 
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
-
-        // Do something
+        window.location.href = "#liamneeson";
         displayImage(imageUri);
     }, function cameraError(error) {
         console.debug("Unable to obtain picture: " + error, "app");
@@ -158,7 +158,7 @@ function openCamera(selection) {
     const options = setOptions(srcType);
 
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
-
+        window.location.href = "#liamneeson";
         displayImage(imageUri);
         // You may choose to copy the picture, save it somewhere, or upload.
 
@@ -172,8 +172,7 @@ function displayImage(imgUri) {
     const imgContainer = document.getElementById('containerImg');
     const img = document.createElement("img");
     img.src = imgUri;
-    img.style.height = "30px";
-    img.style.width = "109px";
+    img.style.width = "100%";
     containerImg.appendChild(img);
 }
 
@@ -218,7 +217,7 @@ $(document).ready(function () {
 
 
 
-         wardrobe  = "Wardrobe " + img_index;
+        wardrobe = "Wardrobe " + img_index;
         $('.menu-wardrobe').append(wardrobe);
 
         const someText = "Wardrobe " + img_index;
@@ -232,105 +231,103 @@ $(document).ready(function () {
     $('#war-nr').append(img_index);
 
     $('#wear span').click(function () {
-     	 
-      	category = $(this).attr("id");
-      	
-   });
+
+        category = $(this).attr("id");
+
+    });
 
     $('#addImage').click(function () { // dodawanie zdjecia, wysyłka do bazy? 
-       
-      console.log(user);
-      console.log(wardrobe);
-      console.log(category);
+
+        console.log(user);
+        console.log(wardrobe);
+        console.log(category);
     });
-       
+
     // get data for chart
-    var date =[];
-	var temp =[];
-    $("#getWeather").click(function(){
-		var city = $("#city").val();
-		console.log(city);
-		var key = '33dbe3b930c23ad2c7a0630b49f3e440';	
-		var url = "https://api.openweathermap.org/data/2.5/forecast";
-		
-		$.get(url, {q:city, appid:key, units: 'metric'},  function(data) {
-			
-		   
-		    for(let i = 0; i < data.list.length; i += 8)
-		    {
-		      date.push(data.list[i].dt_txt);
-		      temp.push(data.list[i].main.temp + 0)  ;
-		      
-		    }
+    var date = [];
+    var temp = [];
+    $("#getWeather").click(function () {
+        var city = $("#city").val();
+        console.log(city);
+        var key = '33dbe3b930c23ad2c7a0630b49f3e440';
+        var url = "https://api.openweathermap.org/data/2.5/forecast";
 
-		    if(date.length == 5 && temp.length == 5)
-		    {
-		    	plot(date, temp);
-		    }
-			
-		}, 'json');			
+        $.get(url, { q: city, appid: key, units: 'metric' }, function (data) {
 
-	});
 
-	// chart    
-	function plot(date, temp){
-			
-		var ctx = document.getElementById('chart').getContext("2d");
-		console.log(temp[0]);
-		var myChart = new Chart(ctx, {
-		type: 'line',
-		data: {
-		    labels: [date[0], date[1], date[2], date[3], date[4]],
-		    datasets: [{
-		        label: "Temperature",
-		        borderColor: "#80b6f4",
-		        pointBorderColor: "#80b6f4",
-		        pointBackgroundColor: "#80b6f4",
-		        pointHoverBackgroundColor: "#80b6f4",
-		        pointHoverBorderColor: "#80b6f4",
-		        pointBorderWidth: 10,
-		        pointHoverRadius: 10,
-		        pointHoverBorderWidth: 1,
-		        pointRadius: 3,
-		        fill: false,
-		        borderWidth: 4,
-		        data: [ temp[0], temp[1], temp[2], temp[3], temp[4] ]
-		    }]
-		},
-		options: {
-		    legend: {
-		        position: "bottom"
-		    },
-		    scales: {
-		        yAxes: [{
-		            ticks: {
-		                fontColor: "rgba(0,0,0,0.5)",
-		                fontStyle: "bold",
-		                beginAtZero: true,
-		                maxTicksLimit: 5,
-		                padding: 20
-		            },
-		            gridLines: {
-		                drawTicks: false,
-		                display: false
-		            }
+            for (let i = 0; i < data.list.length; i += 8) {
+                date.push(data.list[i].dt_txt);
+                temp.push(data.list[i].main.temp + 0);
 
-		        }],
-		        xAxes: [{
-		            gridLines: {
-		                zeroLineColor: "transparent"
-		            },
-		            ticks: {
-		                padding: 20,
-		                fontColor: "rgba(0,0,0,0.5)",
-		                fontStyle: "bold"
-		            }
-		        }]
-		    }
-		}
-		});
+            }
 
-	};
+            if (date.length == 5 && temp.length == 5) {
+                plot(date, temp);
+            }
+
+        }, 'json');
+
+    });
+
+    // chart    
+    function plot(date, temp) {
+
+        var ctx = document.getElementById('chart').getContext("2d");
+        console.log(temp[0]);
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [date[0], date[1], date[2], date[3], date[4]],
+                datasets: [{
+                    label: "Temperature",
+                    borderColor: "#80b6f4",
+                    pointBorderColor: "#80b6f4",
+                    pointBackgroundColor: "#80b6f4",
+                    pointHoverBackgroundColor: "#80b6f4",
+                    pointHoverBorderColor: "#80b6f4",
+                    pointBorderWidth: 10,
+                    pointHoverRadius: 10,
+                    pointHoverBorderWidth: 1,
+                    pointRadius: 3,
+                    fill: false,
+                    borderWidth: 4,
+                    data: [temp[0], temp[1], temp[2], temp[3], temp[4]]
+                }]
+            },
+            options: {
+                legend: {
+                    position: "bottom"
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            fontColor: "rgba(0,0,0,0.5)",
+                            fontStyle: "bold",
+                            beginAtZero: true,
+                            maxTicksLimit: 5,
+                            padding: 20
+                        },
+                        gridLines: {
+                            drawTicks: false,
+                            display: false
+                        }
+
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            zeroLineColor: "transparent"
+                        },
+                        ticks: {
+                            padding: 20,
+                            fontColor: "rgba(0,0,0,0.5)",
+                            fontStyle: "bold"
+                        }
+                    }]
+                }
+            }
+        });
+
+    };
 
 
 });

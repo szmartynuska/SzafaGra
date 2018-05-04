@@ -17,7 +17,7 @@
 </head>
 
 <body onload="init()">
-
+    <!-- Login page -->
     <div data-role="page" class="container-login" id="login">
         <div class="login-content-container">
             <input id="txtEmailLogin" type="email" placeholder="example@email.com" required>
@@ -33,6 +33,7 @@
         </div>
     </div>
 
+    <!-- Registration page -->
     <div data-role="page" id="registration">
         <label>CREATE ACCOUNT</label>
         <div class="form">
@@ -62,10 +63,11 @@
 
     </div>
 
-    </div>
 
+    <!-- Wardrobe main-->
     <div data-role="page" id="main">
         <div class="navbar">
+            <!-- TODO: Do zmiany, id musi być unikalne! Dodać funkcje w js z nazwą i onclick do każdego div z mobile-nav -->
             <div id="mobile-nav">
                 <i class="fa fa-bars pull-right menu-icon"></i>
             </div>
@@ -95,7 +97,8 @@
                         </span>
                         <a href="#favs-all">Favourites</a>
                     </li>
-                    <li id="btnLogOut">
+
+                    <li onclick="logOut()">
                         <span class="fa-li">
                             <i class="fas fa-power-off" aria-hidden="true"></i>
                         </span>
@@ -124,7 +127,7 @@
     </div>
 
 
-
+    <!-- Wardrobe categories -->
     <div data-role="page" id="wardrobe-cats">
         <div class="navbar">
             <div id="mobile-nav">
@@ -156,7 +159,7 @@
                         </span>
                         <a href="#favs-all">Favourites</a>
                     </li>
-                    <li id="btnLogOut">
+                    <li onclick="logOut()">
                         <span class="fa-li">
                             <i class="fas fa-power-off" aria-hidden="true"></i>
                         </span>
@@ -193,9 +196,27 @@
                     <img src="img/hat.svg" alt="Headgear">
                 </a> Headgear</span>
         </div>
+        <div class="dropup">
 
+            <ul id="btnFloatingAction">
+                <li>
+                    <button onclick="openCamera()" type="button" class="btn btn-pic">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </li>
+                <li>
+                    <button onclick="openFilePicker()" type="button" class="btn btn-gal">
+                        <i class="fas fa-images"></i>
+                    </button>
+                </li>
+            </ul>
+            <button type="button" class="btn btn-slide">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
     </div>
 
+    <!-- Categories clothes -->
     <div data-role="page" id="clothes">
         <div class="navbar">
             <div id="mobile-nav">
@@ -227,24 +248,43 @@
                         </span>
                         <a href="#favs-all">Favourites</a>
                     </li>
-                    <li>
+                    <li onclick="logOut()">
                         <span class="fa-li">
                             <i class="fas fa-power-off" aria-hidden="true"></i>
                         </span>
-                        <a href="#login">Logout</a>
+                        Logout
                     </li>
                 </ul>
             </div>
 
+            <div class="dropup">
+
+                <ul id="btnFloatingAction">
+                    <li>
+                        <button onclick="openCamera()" type="button" class="btn btn-pic">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="openFilePicker()" type="button" class="btn btn-gal">
+                            <i class="fas fa-images"></i>
+                        </button>
+                    </li>
+                </ul>
+                <button type="button" class="btn btn-slide">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
         </div>
 
-        <!--do testow umieszczony w pogodzie-->
+        <!-- do testow umieszczony w pogodzie
         <button type="button" class="btn btn-slide" id="addImage">
             <i class="fas fa-plus"></i>
-        </button>
+        </button> -->
 
     </div>
 
+    <!-- Take photo from gallery or using the camera and put to the page -->
     <div data-role="page" id="liamneeson">
         <div class="navbar">
             <div id="mobile-nav">
@@ -276,20 +316,24 @@
                         </span>
                         <a href="#favs-all">Favourites</a>
                     </li>
-                    <li>
+                    <li onclick="logOut()">
                         <span class="fa-li">
                             <i class="fas fa-power-off" aria-hidden="true"></i>
                         </span>
-                        <a href="#login">Logout</a>
+                        Logout
                     </li>
                 </ul>
             </div>
 
         </div>
 
+        <div id="containerImg">
+
+        </div>
 
     </div>
 
+    <!-- Drawing clothes -->
     <div data-role="page" id="lottery">
         <div class="navbar">
             <div id="mobile-nav">
@@ -321,11 +365,11 @@
                         </span>
                         <a href="#favs-all">Favourites</a>
                     </li>
-                    <li>
+                    <li onclick="logOut()">
                         <span class="fa-li">
                             <i class="fas fa-power-off" aria-hidden="true"></i>
                         </span>
-                        <a href="#login">Logout</a>
+                        Logout
                     </li>
                 </ul>
             </div>
@@ -333,6 +377,7 @@
 
     </div>
 
+    <!-- All favorites clothes -->
     <div data-role="page" id="favs-all">
         <div class="navbar">
             <div id="mobile-nav">
@@ -364,11 +409,11 @@
                         </span>
                         <a href="#favs-all">Favourites</a>
                     </li>
-                    <li>
+                    <li onclick="logOut()">
                         <span class="fa-li">
                             <i class="fas fa-power-off" aria-hidden="true"></i>
                         </span>
-                        <a href="#login">Logout</a>
+                        Logout
                     </li>
                 </ul>
             </div>
@@ -379,6 +424,7 @@
 
     </div>
 
+    <!-- Favorites set  -->
     <div data-role="page" id="fav-set">
         <div class="navbar">
             <div id="mobile-nav">
@@ -410,11 +456,11 @@
                         </span>
                         <a href="#favs-all">Favourites</a>
                     </li>
-                    <li>
+                    <li onclick="logOut()">
                         <span class="fa-li">
                             <i class="fas fa-power-off" aria-hidden="true"></i>
                         </span>
-                        <a href="#login">Logout</a>
+                        Logout
                     </li>
                 </ul>
             </div>
@@ -423,6 +469,7 @@
 
     </div>
 
+    <!-- Weather page -->
     <div data-role="page" id="weather">
         <div class="navbar">
             <div id="mobile-nav">
@@ -454,25 +501,25 @@
                         </span>
                         <a href="#favs-all">Favourites</a>
                     </li>
-                    <li>
+                    <li onclick="logOut()">
                         <span class="fa-li">
                             <i class="fas fa-power-off" aria-hidden="true"></i>
                         </span>
-                        <a href="#login">Logout</a>
+                        Logout
                     </li>
                 </ul>
             </div>
         </div>
-        <div id="containerImg">
-            <!-- <img id="imageFile"> -->
-        </div>
+
+
+
         <input id="city"></input>
-		<button id="getWeather"> get weather</button>
-		<div class="line-chart">
-			<div class="aspect-ratio">
-				<canvas id="chart"></canvas>
-			</div>
-		</div>
+        <button id="getWeather"> get weather</button>
+        <div class="line-chart">
+            <div class="aspect-ratio">
+                <canvas id="chart"></canvas>
+            </div>
+        </div>
         <div class="dropup">
 
             <ul id="btnFloatingAction">
