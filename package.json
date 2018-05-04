@@ -17,6 +17,7 @@
         "cordova-plugin-customurlscheme": "^4.3.0",
         "cordova-plugin-firebase-authentication": "^0.13.2",
         "cordova-plugin-inappbrowser": "^3.0.0",
+        "cordova-plugin-splashscreen": "^5.0.2",
         "cordova-support-google-services": "^1.1.0",
         "cordova-universal-links-plugin": "^1.2.1"
     },
@@ -34,7 +35,8 @@
             },
             "cordova-plugin-firebase-authentication": {
                 "FIREBASE_VERSION": "11.6.+"
-            }
+            },
+            "cordova-plugin-splashscreen": {}
         }
     }
 }

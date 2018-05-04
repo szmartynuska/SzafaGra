@@ -52,8 +52,8 @@ btnLogin.addEventListener('click', e => {
         return;
     }
     cordova.plugins.firebase.auth.signInWithEmailAndPassword(email, password)
-        .then(function (user) {
-            // user = result.uid;
+        .then(function (result) {
+            user = result.uid;
             window.location.href = "#main";
         }).catch(function (error) {
             alert(error);
