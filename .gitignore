@@ -1,0 +1,6 @@
+# Ignore folder named `platforms`
+platforms/
+# Ignore folder named `plugins`
+plugins/
+#Ignore folder named `ul_web_hooks`
+ul_web_hooks/
