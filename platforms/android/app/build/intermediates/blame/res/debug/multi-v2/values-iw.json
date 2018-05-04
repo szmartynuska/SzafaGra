@@ -79,10 +79,10 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\ABC\\Desktop\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-iw\\values-iw.xml",
+            "outputFile": "C:\\Users\\asiat\\Desktop\\git\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-iw\\values-iw.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ABC\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\09fad2023bc3d518fbd173d9070f81a0\\res\\values-iw\\values.xml",
+                    "source": "C:\\Users\\asiat\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\dc0e29297df8fe3099e8c5b105da0b12\\res\\values-iw\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -99,7 +99,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ABC\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-11.6.2.aar\\07d138b10380206c6bca4bce22d7e98c\\res\\values-iw\\values.xml",
+                    "source": "C:\\Users\\asiat\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-11.6.2.aar\\fa5587d63f431c51f367db39ae188369\\res\\values-iw\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",

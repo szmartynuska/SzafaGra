@@ -40,7 +40,7 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\asiat\\Desktop\\git\\hello\\LastCordova\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-si\\values-si.xml",
+            "outputFile": "C:\\Users\\asiat\\Desktop\\git\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-si\\values-si.xml",
             "map": [
                 {
                     "source": "C:\\Users\\asiat\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\dc0e29297df8fe3099e8c5b105da0b12\\res\\values-si\\values.xml",
@@ -79,27 +79,10 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\ABC\\Desktop\\SzafaGra\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-si\\values-si.xml",
+            "outputFile": "C:\\Users\\asiat\\Desktop\\git\\hello\\LastCordova\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-si\\values-si.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ABC\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-11.6.2.aar\\07d138b10380206c6bca4bce22d7e98c\\res\\values-si\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "285",
-                        "endColumns": "197",
-                        "endOffsets": "482"
-                    },
-                    "to": {
-                        "startLines": "9",
-                        "startColumns": "4",
-                        "startOffsets": "1096",
-                        "endColumns": "197",
-                        "endOffsets": "1289"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\ABC\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\09fad2023bc3d518fbd173d9070f81a0\\res\\values-si\\values.xml",
+                    "source": "C:\\Users\\asiat\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.2.aar\\dc0e29297df8fe3099e8c5b105da0b12\\res\\values-si\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -113,6 +96,23 @@
                         "startOffsets": "105,215,401,527,642,843,969,1294,1504,1621,1808,1941,2144,2335,2438,2529",
                         "endColumns": "109,185,125,114,200,125,126,209,116,186,132,202,190,102,90,108",
                         "endOffsets": "210,396,522,637,838,964,1091,1499,1616,1803,1936,2139,2330,2433,2524,2633"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\asiat\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-11.6.2.aar\\fa5587d63f431c51f367db39ae188369\\res\\values-si\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "285",
+                        "endColumns": "197",
+                        "endOffsets": "482"
+                    },
+                    "to": {
+                        "startLines": "9",
+                        "startColumns": "4",
+                        "startOffsets": "1096",
+                        "endColumns": "197",
+                        "endOffsets": "1289"
                     }
                 }
             ]
