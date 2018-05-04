@@ -243,6 +243,57 @@ $(document).ready(function () {
         console.log(category);
     });
 
+    
+    //dodawanie list z tagami do zdjecia
+    
+    var target = $("div#target");
+    var n = function() {
+      return $("div.col-xs-2").length;
+    };
+    var newInput = function() {
+      var div = $("<div/>", {
+        "class": "input-group"
+      });
+      var input = $("<select><option>Select</option><option>1</option><option> 2</option></select>", {
+        "class": "form-control",
+        "name": "",
+
+      });
+      var span = $("<span/>", {
+        "class": "input-group-btn"
+      });
+      var button = $("<button/>", {
+        "class": "removeBtn btn btn-sm btn-link",
+        type: "button",
+        id: n()
+      });
+      var glyph = $("<span/>", {
+        "class": "fas fa-times"
+      });
+      var col = $("<div/>", {
+        "class": "form-group col-xs-2",
+        id: "newInput-" + n()
+      });
+
+      $(glyph).appendTo(button);
+      $(button).appendTo(span);
+      $(input).appendTo(div);
+      $(span).appendTo(div);
+      $(div).appendTo(col);
+      return col;
+    };
+
+    $('button#add').on('click', function() {
+      $(newInput()).appendTo(target);
+    });
+
+    $('#target').on('click', 'button', function() {
+      var target = $("#target").find("#newInput-" + this.id);
+      $(target).remove();
+    });
+    
+    
+    
     // get data for chart
     var date = [];
     var temp = [];

@@ -230,7 +230,7 @@ label {
     
 }
 
-#txtEmailRegistration {
+#txtEmailRegistration, #txtEmailReset {
     position: absolute;
     background: rgba(255, 255, 255, 0.43);
     border-radius: 50px;
@@ -289,17 +289,74 @@ label {
 
     color: #FFFFFF;
 }
-/*gdzieś uciekły*/
-.input-icon {
-    position: relative;
+/*icons*/
+.fa-envelope {
+    position: absolute;
     color: white;
-    left: calc(50% - 230px/2 - 0.5px);
-    top: calc(50% - 50px/2 - 105.5px); /*jeszcze cza od góry wymyślić*/
+    left: calc(50% - 225px/2 - 0.5px);
+	top: calc(50% - 49px/2 + 85px);
     margin-bottom: 43px;
     vertical-align: middle;
     display:table-cell;
-
 }
+.fa-lock {
+    position: absolute;
+    color: white;
+    left: calc(50% - 225px/2 - 0.5px);
+	top: calc(50% - 49px/2 + 146px);
+    margin-bottom: 43px;
+    vertical-align: middle;
+    display:table-cell;
+}
+#falock {
+    position: absolute;
+    color: white;
+    left: calc(50% - 225px/2 - 0.5px);
+	top: calc(50% - 49px/2 + 208px);
+     margin-bottom: 43px;
+     vertical-align: middle;
+     display:table-cell;
+}
+
+#forget { 
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+#btnSendPass {
+    position: absolute;
+    width: 250px;
+    height: 50px;
+    left: calc(50% - 247px/2 - 0.5px);
+    top: calc(50% - 49px/2 - 43.5px);
+
+    background: #62C277;
+    border: 1px solid rgba(0, 0, 0, 0.28);
+    box-sizing: border-box;
+    border-radius: 50px;
+    font-size: 18px;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+#btnCancel {
+    position: absolute;
+    width: 250px;
+    height: 50px;
+    left: calc(50% - 247px/2 - 0.5px);
+    top: calc(50% - 49px/2 + 18.5px);
+
+    background: #DF5765;
+    border: 1px solid rgba(0, 0, 0, 0.28);
+    box-sizing: border-box;
+    border-radius: 50px;
+    font-size: 18px;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
 
 /*hamburger*/
 .navbar {
@@ -351,6 +408,19 @@ label {
   -o-transition: all .5s;
   transition: all .5s;/*outline: 1px solid green*/
     
+}
+
+#logout {
+	color: white;
+	margin-left: 17px; 
+	cursor: pointer;
+}
+b:hover{
+	margin-bottom: 5px;
+	padding-left: .5em;
+	-webkit-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all .5s;
 }
 
 /*FIN MENU*/
@@ -549,3 +619,69 @@ p {
     color: #786D6D;
 }
 
+/*liamneeson*/
+
+/* Moving things down a bit */
+.conty {
+    margin-top: 250px;
+    font-size: 14px;
+    left: calc(50% - 133px/2 - 28.5px);
+    height: auto;
+}
+
+/* Adding some color to the remove button */
+
+.removeBtn {
+    background-color: white;
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    color: #AA0000;
+    box-shadow: none;
+}
+
+/* Make first remove button grey */
+
+div.col-sm-2:first-child span.fa-times {
+  color: #eeeeee;
+}
+
+/* Spacing things out a bit */
+
+span.fa-plus {
+  padding-right: 3px;
+    font-size: 12px;
+}
+
+
+/* Removing the default underline */
+
+.btn-link:hover {
+  text-decoration: none;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    border: none;
+    transition: opacity 0.3s;
+    width: auto;
+    height: 20px;
+    background: rgba(39, 174, 96, 0.43);
+    border-radius: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 5px;
+    display: inline-grid;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+
+#add {
+    font-size: 12px;
+    background-color: #2F80ED;
+}

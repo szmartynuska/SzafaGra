@@ -23,7 +23,7 @@
             <input id="txtEmailLogin" type="email" placeholder="example@email.com" required>
             <input id="txtPasswordLogin" type="password" placeholder="********">
             <a class="account" href="#registration">Create account</a>
-            <a class="frg-passwd" href="#">Forgot password?</a>
+            <a class="frg-passwd" href="#forget">Forgot password?</a>
             <br>
             <button id="btnLogin" class="login">LOGIN</button>
             <button id="btnFacebookLogin" class="media fb">
@@ -53,12 +53,27 @@
             <div class="input-wrapper">
                 <input id="txtPasswordConfirmRegistration" type="password" placeholder="Confirm password">
                 <label for="passwordConfirm" class="input-icon">
-                    <i class="fas fa-lock" aria-hidden="true"></i>
+                    <i class="fas fa-lock" id="falock" aria-hidden="true"></i>
                 </label>
             </div>
-            <!-- Zmieniłam ci tutaj to, bo według stack overflow input type="submit" jest już nie wspierane w HTML -->
             <button id="btnSignUp">SIGN UP</button>
             <a href="#main">YOLO</a>
+        </div>
+
+    </div>
+    
+    <div data-role="page" id="forget">
+        <label>RESET PASSWORD</label>
+        <div class="form">
+
+            <div class="input-wrapper">
+                <input id="txtEmailReset" type="email" placeholder="E-mail" required>
+                <label for="emailR" class="input-icon">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                </label>
+            </div>
+            <button id="btnSendPass">SEND PASSWORD</button>
+            <button id="btnCancel" onclick="window.location.href='#login'">CANCEL</button>
         </div>
 
     </div>
@@ -102,7 +117,7 @@
                         <span class="fa-li">
                             <i class="fas fa-power-off" aria-hidden="true"></i>
                         </span>
-                        Logout
+                        <b id="logout">Logout</b>
                     </li>
                 </ul>
             </div>
@@ -163,7 +178,7 @@
                         <span class="fa-li">
                             <i class="fas fa-power-off" aria-hidden="true"></i>
                         </span>
-                        Logout
+                        <b id="logout">Logout</b>
                     </li>
                 </ul>
             </div>
@@ -252,7 +267,7 @@
                         <span class="fa-li">
                             <i class="fas fa-power-off" aria-hidden="true"></i>
                         </span>
-                        Logout
+                        <b id="logout">Logout</b>
                     </li>
                 </ul>
             </div>
@@ -284,7 +299,7 @@
 
     </div>
 
-    <!-- Take photo from gallery or using the camera and put to the page -->
+    <!-- Take a photo from a gallery or using the camera and put to the page -->
     <div data-role="page" id="liamneeson">
         <div class="navbar">
             <div id="mobile-nav">
@@ -320,7 +335,7 @@
                         <span class="fa-li">
                             <i class="fas fa-power-off" aria-hidden="true"></i>
                         </span>
-                        Logout
+                        <b id="logout">Logout</b>
                     </li>
                 </ul>
             </div>
@@ -328,8 +343,59 @@
         </div>
 
         <div id="containerImg">
-
         </div>
+        
+        <!--te te te pod zdjeciem, jak potrzeba więcej takich, to kopiuj-wklej-->
+        
+        <div class="conty">
+          <div class="panel panel-primary">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="row" id="target">
+                    <div class="col-sm-2">
+                      <div class="categories"><span>Category:</span>
+                          <select class="form-control">
+                              <option>Select</option>
+                              <option>Tops & Sweaters</option>
+                              <option>Dresses & Skirts</option>
+                              <option>Trousers & Shorts</option>
+                              <option>Outerwear</option>
+                              <option>Footwear</option>
+                              <option>Headgear</option>
+                          </select>
+                        <span class="input-group-btn">
+                            <button class="btn btn-sm btn-link removeBtn">
+                            <span class="fas fa-times"></span>
+                        </button>
+                        </span>
+                      </div>
+                        <div class="input-group"><span>Category:</span>
+                          <select class="form-control">
+                              <option>Select</option>
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                          </select>
+                        <span class="input-group-btn">
+                            <button class="btn btn-sm btn-link removeBtn">
+                            <span class="fas fa-times"></span>
+                        </button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row pull-right">
+                    <div class="col-xs-1">
+                      <button class="btn btn-link btn-sm" id="add"><span class="fas fa-plus"></span> Add Field</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
 
     </div>
 
@@ -369,7 +435,7 @@
                         <span class="fa-li">
                             <i class="fas fa-power-off" aria-hidden="true"></i>
                         </span>
-                        Logout
+                        <b id="logout">Logout</b>
                     </li>
                 </ul>
             </div>
@@ -413,7 +479,7 @@
                         <span class="fa-li">
                             <i class="fas fa-power-off" aria-hidden="true"></i>
                         </span>
-                        Logout
+                        <b id="logout">Logout</b>
                     </li>
                 </ul>
             </div>
@@ -460,7 +526,7 @@
                         <span class="fa-li">
                             <i class="fas fa-power-off" aria-hidden="true"></i>
                         </span>
-                        Logout
+                        <b id="logout">Logout</b>
                     </li>
                 </ul>
             </div>
@@ -505,7 +571,7 @@
                         <span class="fa-li">
                             <i class="fas fa-power-off" aria-hidden="true"></i>
                         </span>
-                        Logout
+                        <b id="logout">Logout</b>
                     </li>
                 </ul>
             </div>
