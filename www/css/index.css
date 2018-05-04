@@ -685,3 +685,39 @@ select {
     font-size: 12px;
     background-color: #2F80ED;
 }
+
+/*chart */
+.aspect-ratio{
+    position: absolute;
+    height: 50%;
+    width: 100%;   
+}
+
+
+.input-container
+{
+    display: inline-flex;   
+}
+
+.input-container input {
+  
+    height: 40px;
+    font-size: 16px;
+    transition: 0.6s;
+    border: none;
+    border-bottom: 1px solid #CCC;
+    background-color: transparent;
+    &:focus {
+        outline: none;
+        border-bottom: 1px solid #28a2a2;
+    }
+}
+.input-container button {  
+    text-align: center;
+    background-color: #319bef;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 23px;
+    font-size: 16px;
+    
+}

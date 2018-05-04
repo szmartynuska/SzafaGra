@@ -1,6 +1,6 @@
 var user;
 var wardrobe;
-var category;
+
 
 function init() {
     document.addEventListener('deviceready', onDeviceReady, false);
@@ -220,27 +220,17 @@ $(document).ready(function () {
         wardrobe = "Wardrobe " + img_index;
         $('.menu-wardrobe').append(wardrobe);
 
-        const someText = "Wardrobe " + img_index;
-        $('.menu-wardrobe').append(someText);
-
-
         img_index++;
 
     });
 
     $('#war-nr').append(img_index);
 
-    $('#wear span').click(function () {
-
-        category = $(this).attr("id");
-
-    });
-
     $('#addImage').click(function () { // dodawanie zdjecia, wysyłka do bazy? 
 
         console.log(user);
         console.log(wardrobe);
-        console.log(category);
+       
     });
 
 
@@ -294,38 +284,53 @@ $(document).ready(function () {
 
 
 
-    // get data for chart
-    var date = [];
+   // get data for chart
+    var dateUTC = [];
     var temp = [];
+    var daysOfWeek;
     $("#getWeather").click(function () {
         var city = $("#city").val();
-        console.log(city);
+        
         var key = '33dbe3b930c23ad2c7a0630b49f3e440';
         var url = "https://api.openweathermap.org/data/2.5/forecast";
 
         $.get(url, { q: city, appid: key, units: 'metric' }, function (data) {
 
-
             for (let i = 0; i < data.list.length; i += 8) {
-                date.push(data.list[i].dt_txt);
-                temp.push(data.list[i].main.temp + 0);
+                dateUTC.push(data.list[i].dt);
+                temp.push(parseInt(data.list[i].main.temp));
 
             }
 
-            if (date.length == 5 && temp.length == 5) {
-                plot(date, temp);
+            if (dateUTC.length == 5 && temp.length == 5) {
+                daysOfWeek = getDayOfWeek(dateUTC);
+                plot(daysOfWeek, temp);
             }
 
         }, 'json');
 
     });
+    // convert UNIX timestamp to day of the week
+    function getDayOfWeek(dateUTC){
+        var daysOfWeek = [];
+        var days = ['Sun.','Mon.','Tue.','Wed.','Thu.','Fri.','Sat.'];
+        for(let i = 0; i < dateUTC.length; i++)
+        {
+            var date = new Date();
+            date.setTime(dateUTC[i]*1000); // javascript timestamps are in milliseconds
+            daysOfWeek.push( days[date.getUTCDay()] );
+        }
+
+        return daysOfWeek;
+    };
 
     // chart    
     function plot(date, temp) {
 
         var ctx = document.getElementById('chart').getContext("2d");
-        console.log(temp[0]);
+       
         var myChart = new Chart(ctx, {
+            
             type: 'line',
             data: {
                 labels: [date[0], date[1], date[2], date[3], date[4]],
@@ -346,8 +351,10 @@ $(document).ready(function () {
                 }]
             },
             options: {
+               
+                maintainAspectRatio: false,
                 legend: {
-                    position: "bottom"
+                    display: false
                 },
                 scales: {
                     yAxes: [{
@@ -356,7 +363,7 @@ $(document).ready(function () {
                             fontStyle: "bold",
                             beginAtZero: true,
                             maxTicksLimit: 5,
-                            padding: 20
+                            padding: 10
                         },
                         gridLines: {
                             drawTicks: false,
@@ -369,7 +376,7 @@ $(document).ready(function () {
                             zeroLineColor: "transparent"
                         },
                         ticks: {
-                            padding: 20,
+                            padding: 10,
                             fontColor: "rgba(0,0,0,0.5)",
                             fontStyle: "bold"
                         }
@@ -379,6 +386,5 @@ $(document).ready(function () {
         });
 
     };
-
 
 });
