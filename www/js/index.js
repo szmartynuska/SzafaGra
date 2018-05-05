@@ -76,7 +76,6 @@ btnGoogleLogin.addEventListener('click', e => {
             var token = result.credential.accessToken;
             // The signed-in user info.
             var user = result.user;
-            // console.log(user);
             window.location.href = "#main";
             // ...
         }).catch(function (error) {
@@ -147,8 +146,9 @@ function openFilePicker(selection) {
 
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
         window.location.href = "#liamneeson";
-        writeUserImage(imageUri);
-        //displayImage(imageUri);
+
+        storageImage(imageUri);
+
     }, function cameraError(error) {
         console.debug("Unable to obtain picture: " + error, "app");
 
@@ -162,8 +162,8 @@ function openCamera(selection) {
 
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
         window.location.href = "#liamneeson";
-        writeUserImage(imageUri);
-        // displayImage(imageUri);
+
+        storageImage(imageUri);
 
     }, function cameraError(error) {
         console.debug("Unable to obtain picture: " + error, "app");
@@ -202,34 +202,33 @@ function displayImage(imgUri) {
 }
 
 function writeUserImage(imgUri) {
-
     user = firebase.auth().currentUser;
     firebase.database().ref('Users/' + user.uid + '/' + wardrobe + '/Category/').set({
         email: user.email,
         name: user.displayName,
-        profile_picture: storageImage(imgUri)
+        picture: imgUri
     });
 }
 
-// function getUrlImage(reference) {
-//     firebase.storage().ref(reference).getDownloadURL().then(function (url) {
-//         console.log(url);
-//         return url;
-//     });
-// }
+
 function storageImage(imgUri) {
     var imgStorage = 'data:image/jpg;base64, ' + imgUri;
-    firebase.storage().ref('Clothes/Photo')
-        .putString(imgStorage, 'data_url').then(function (snapshot) {
-            console.log('Uploaded a data_url string!');
+    user = firebase.auth().currentUser;
+    var storageRef = firebase.storage().ref(user.uid + '/' + 'Clothes/Photo')
 
-            //Get the file's Storage URI and update the chat message placeholder
-            console.log(snapshot.ref.getDownloadURL());
-            snapshot.ref('Clothes/photo').getDownloadURL().then(function (url) {
-                console.log(url);
-                return url;
-            });
-        });
+    var uploadTask = storageRef.putString(imgStorage, 'data_url');
+    uploadTask.on('state_changed', function (snapshot) {
+
+    }, function (error) {
+
+    }, function () {
+        var downloadURL = uploadTask.snapshot.downloadURL;
+        writeUserImage(downloadURL);
+        displayImage(downloadURL);
+
+    });
+
+
 }
 
 
