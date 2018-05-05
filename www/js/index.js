@@ -114,12 +114,11 @@ btnFacebookLogin.addEventListener('click', e => {
 // Reset password
 btnSendPass.addEventListener('click', e => {
     const email = txtEmailReset.value;
-    if(email == "")
-    {
+    if (email == "") {
         alert("Fill in all fields");
         return 0;
     }
-    cordova.plugins.firebase.auth.sendPasswordResetEmail(email).then(function (){
+    cordova.plugins.firebase.auth.sendPasswordResetEmail(email).then(function () {
         alert("email sent");
     }).catch(function (error) {
         alert(error);
@@ -139,27 +138,45 @@ function logOut() {
 }
 
 
-
 //Take picture from gallery
 function openFilePicker(selection) {
+
 
     const srcType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
     const options = setOptions(srcType);
 
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
         window.location.href = "#liamneeson";
-        displayImage(imageUri);
+        writeUserImage(imageUri);
+        //displayImage(imageUri);
     }, function cameraError(error) {
         console.debug("Unable to obtain picture: " + error, "app");
 
     }, options);
 }
 
+function openCamera(selection) {
+
+    const srcType = Camera.PictureSourceType.CAMERA;
+    const options = setOptions(srcType);
+
+    navigator.camera.getPicture(function cameraSuccess(imageUri) {
+        window.location.href = "#liamneeson";
+        writeUserImage(imageUri);
+        // displayImage(imageUri);
+
+    }, function cameraError(error) {
+        console.debug("Unable to obtain picture: " + error, "app");
+
+    }, options);
+}
+
+// Option for openFilePicker() and openCamera()
 function setOptions(srcType) {
     const options = {
         // Some common settings are 20, 50, and 100
         quality: 50,
-        destinationType: Camera.DestinationType.FILE_URI,
+        destinationType: Camera.DestinationType.DATA_URL,
         // In this app, dynamically set the picture source, Camera or photo gallery
         sourceType: srcType,
         encodingType: Camera.EncodingType.JPEG,
@@ -169,28 +186,50 @@ function setOptions(srcType) {
     }
     return options;
 }
-function openCamera(selection) {
 
-    const srcType = Camera.PictureSourceType.CAMERA;
-    const options = setOptions(srcType);
-
-    navigator.camera.getPicture(function cameraSuccess(imageUri) {
-        window.location.href = "#liamneeson";
-        displayImage(imageUri);
-        // You may choose to copy the picture, save it somewhere, or upload.
-
-    }, function cameraError(error) {
-        console.debug("Unable to obtain picture: " + error, "app");
-
-    }, options);
-}
+// Show image in activity
 function displayImage(imgUri) {
-
     const imgContainer = document.getElementById('containerImg');
-    const img = document.createElement("img");
-    img.src = imgUri;
-    img.style.width = "100%";
-    containerImg.appendChild(img);
+    if (document.getElementById('addImg') == null) {
+        const img = document.createElement("img");
+        img.id = "addImg";
+        img.src = imgUri;
+        img.style.width = "100%";
+        containerImg.appendChild(img);
+    } else {
+        document.getElementById('addImg').src = imgUri;
+    }
+}
+
+function writeUserImage(imgUri) {
+
+    user = firebase.auth().currentUser;
+    firebase.database().ref('Users/' + user.uid + '/' + wardrobe + '/Category/').set({
+        email: user.email,
+        name: user.displayName,
+        profile_picture: storageImage(imgUri)
+    });
+}
+
+// function getUrlImage(reference) {
+//     firebase.storage().ref(reference).getDownloadURL().then(function (url) {
+//         console.log(url);
+//         return url;
+//     });
+// }
+function storageImage(imgUri) {
+    var imgStorage = 'data:image/jpg;base64, ' + imgUri;
+    firebase.storage().ref('Clothes/Photo')
+        .putString(imgStorage, 'data_url').then(function (snapshot) {
+            console.log('Uploaded a data_url string!');
+
+            //Get the file's Storage URI and update the chat message placeholder
+            console.log(snapshot.ref.getDownloadURL());
+            snapshot.ref('Clothes/photo').getDownloadURL().then(function (url) {
+                console.log(url);
+                return url;
+            });
+        });
 }
 
 
@@ -247,7 +286,7 @@ $(document).ready(function () {
 
         console.log(user);
         console.log(wardrobe);
-       
+
     });
 
 
@@ -301,13 +340,13 @@ $(document).ready(function () {
 
 
 
-   // get data for chart
+    // get data for chart
     var dateUTC = [];
     var temp = [];
     var daysOfWeek;
     $("#getWeather").click(function () {
         var city = $("#city").val();
-        
+
         var key = '33dbe3b930c23ad2c7a0630b49f3e440';
         var url = "https://api.openweathermap.org/data/2.5/forecast";
 
@@ -328,14 +367,13 @@ $(document).ready(function () {
 
     });
     // convert UNIX timestamp to day of the week
-    function getDayOfWeek(dateUTC){
+    function getDayOfWeek(dateUTC) {
         var daysOfWeek = [];
-        var days = ['Sun.','Mon.','Tue.','Wed.','Thu.','Fri.','Sat.'];
-        for(let i = 0; i < dateUTC.length; i++)
-        {
+        var days = ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.'];
+        for (let i = 0; i < dateUTC.length; i++) {
             var date = new Date();
-            date.setTime(dateUTC[i]*1000); // javascript timestamps are in milliseconds
-            daysOfWeek.push( days[date.getUTCDay()] );
+            date.setTime(dateUTC[i] * 1000); // javascript timestamps are in milliseconds
+            daysOfWeek.push(days[date.getUTCDay()]);
         }
 
         return daysOfWeek;
@@ -345,9 +383,9 @@ $(document).ready(function () {
     function plot(date, temp) {
 
         var ctx = document.getElementById('chart').getContext("2d");
-       
+
         var myChart = new Chart(ctx, {
-            
+
             type: 'line',
             data: {
                 labels: [date[0], date[1], date[2], date[3], date[4]],
@@ -368,7 +406,7 @@ $(document).ready(function () {
                 }]
             },
             options: {
-               
+
                 maintainAspectRatio: false,
                 legend: {
                     display: false
