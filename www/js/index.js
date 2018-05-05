@@ -19,6 +19,8 @@ const txtEmailRegistration = document.getElementById('txtEmailRegistration');
 const btnSignUp = document.getElementById('btnSignUp');
 const btnFacebookLogin = document.getElementById('btnFacebookLogin');
 const btnLogOut = document.getElementById('btnLogOut');
+const txtEmailReset = document.getElementById('txtEmailReset');
+const btnSendPass = document.getElementById('btnSendPass');
 
 // Sign up with email and password
 btnSignUp.addEventListener('click', function () {
@@ -107,6 +109,21 @@ btnFacebookLogin.addEventListener('click', e => {
                 }
             });
         });
+});
+
+// Reset password
+btnSendPass.addEventListener('click', e => {
+    const email = txtEmailReset.value;
+    if(email == "")
+    {
+        alert("Fill in all fields");
+        return 0;
+    }
+    cordova.plugins.firebase.auth.sendPasswordResetEmail(email).then(function (){
+        alert("email sent");
+    }).catch(function (error) {
+        alert(error);
+    });
 });
 
 
