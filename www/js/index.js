@@ -382,7 +382,6 @@ $(document).ready(function () {
     });
 
 
-
     // get data for chart
     var dateUTC = [];
     var temp = [];

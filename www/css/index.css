@@ -14,6 +14,7 @@ html,
 body {
   width: 100%;
   height: 100%;
+    
 }
 
 body {
@@ -205,7 +206,7 @@ button:focus {
     background: linear-gradient(to top, rgba(2,0,36,1) 0%, rgba(152,203,143,1) 70%);
 }
 
-label {
+#registration > label, #forget > label, #registration > .form > .input-wrapper > label, #forget > .form > .input-wrapper > label {
     position: absolute;
     text-align: center;
     width: 158px;
@@ -621,12 +622,23 @@ p {
 
 /*liamneeson*/
 
+#containerImg {
+    margin-top: 1px;
+    background-color: gray; /*potem wywalic*/
+    height: 350px;
+}
+
 /* Moving things down a bit */
 .conty {
-    margin-top: 250px;
-    font-size: 14px;
+    margin-top: 10px;
+    font-size: 13px;
     left: calc(50% - 133px/2 - 28.5px);
     height: auto;
+    text-align: left;
+    padding-left: 12px;
+    padding-right: 12px;
+    white-space: nowrap;
+    
 }
 
 /* Adding some color to the remove button */
@@ -675,15 +687,14 @@ select {
     padding-left: 10px;
     padding-right: 10px;
     margin-bottom: 5px;
-    display: inline-grid;
     color: #FFFFFF;
-    text-align: center;
 }
 
 
 #add {
     font-size: 12px;
     background-color: #2F80ED;
+    
 }
 
 .btn-ok {
@@ -766,5 +777,42 @@ select {
     font-size: 18px;
     text-align: center;
 
+    color: #FFFFFF;
+}
+
+.ranges > div > label {
+    font-size: 12px;
+    white-space: nowrap;
+    display: inline;
+}
+
+
+#range-from {
+    border: none;
+    transition: opacity 0.3s;
+    position: absolute;
+    width: 50px;
+    height: auto;
+    left: calc(50% - 75px/2 + 0.5px);
+    top: calc(50% - 20px/2 + 145px);
+
+    background: rgba(39, 174, 96, 0.43);
+    border-radius: 50px;
+    padding-left: 10px;
+    color: #FFFFFF;
+}
+
+#range-to {
+    border: none;
+    transition: opacity 0.3s;
+    position: absolute;
+    width: 50px;
+    height: auto;
+    left: calc(50% - -55px/2 + 0.5px);
+    top: calc(50% - 20px/2 + 145px);
+
+    background: rgba(39, 174, 96, 0.43);
+    border-radius: 50px;
+    padding-left: 10px;
     color: #FFFFFF;
 }

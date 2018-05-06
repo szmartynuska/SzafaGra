@@ -342,6 +342,8 @@
         
         <!--te te te pod zdjeciem, jak potrzeba więcej takich, to kopiuj-wklej-->
         
+
+        
         <div class="conty">
           <div class="panel panel-primary">
             <div class="panel-body">
@@ -353,24 +355,33 @@
                           <select class="form-control">
                               <option>Select</option>
                               <option>Tops & Sweaters</option>
-                              <option>Dresses & Skirts</option>
-                              <option>Trousers & Shorts</option>
+                              <option>Dresses</option>
+                              <option>Skirts & Shorts</option>
+                              <option>Trousers</option>
                               <option>Outerwear</option>
                               <option>Footwear</option>
                               <option>Headgear</option>
                           </select>
-                        <span class="input-group-btn">
-                            <button class="btn btn-sm btn-link removeBtn">
-                            <span class="fas fa-times"></span>
-                        </button>
-                        </span>
                       </div>
-                        <div class="input-group"><span>Category:</span>
+                        
+                        <form>
+                            <div class="ranges">
+                                <div><span>Temperature range:</span>
+                                <input id="range-from"  min="-80" max="100" value="-15°C">
+                                <input id="range-to" min="-80" max="100" value="100°C">
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <div class="input-group"><span>Weather:</span>
                           <select class="form-control">
                               <option>Select</option>
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
+                              <option>Rain</option>
+                              <option>Thunderstorm</option>
+                              <option>Drizle</option>
+                              <option>Snow</option>
+                              <option>Clear</option>
+                              <option>Clouds</option>
                           </select>
                         <span class="input-group-btn">
                             <button class="btn btn-sm btn-link removeBtn">
