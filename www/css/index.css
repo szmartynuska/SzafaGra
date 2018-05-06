@@ -710,7 +710,6 @@ select {
 
 .btn-back {
     position: fixed;
-    background: #2F80ED;
     width: 60px;
     height: 60px;
     left: calc(50% - 70px/2 - 115px);
@@ -815,4 +814,18 @@ select {
     border-radius: 50px;
     padding-left: 10px;
     color: #FFFFFF;
+}
+
+/*lottery*/
+
+.btn-love {
+    position: fixed;
+    background: #2F80ED;
+    width: 60px;
+    height: 60px;
+    left: calc(50% - 70px/2 - 115px);
+    bottom: calc(50% - 1150px/2 + 303px);
+    background: #DC8383;
+    font-size: 36px;
+    text-align: center;
 }
