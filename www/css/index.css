@@ -206,7 +206,7 @@ button:focus {
     background: linear-gradient(to top, rgba(2,0,36,1) 0%, rgba(152,203,143,1) 70%);
 }
 
-#registration > label, #forget > label, #registration > .form > .input-wrapper > label, #forget > .form > .input-wrapper > label {
+label {
     position: absolute;
     text-align: center;
     width: 158px;
