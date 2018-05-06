@@ -20,6 +20,7 @@ const btnLogOut = document.getElementById('btnLogOut');
 const txtEmailReset = document.getElementById('txtEmailReset');
 const btnSendPass = document.getElementById('btnSendPass');
 
+
 // Sign up with email and password
 btnSignUp.addEventListener('click', function () {
     const email = txtEmailRegistration.value;
@@ -52,8 +53,9 @@ btnLogin.addEventListener('click', e => {
         return;
     }
     firebase.auth().signInWithEmailAndPassword(email, password) // zmien reszte 
-        .then(function (result) {           
+        .then(function (result) {
             window.location.href = "#main";
+            getLengthOfStorage();
             load();
         }).catch(function (error) {
             alert(error);
@@ -96,7 +98,7 @@ btnFacebookLogin.addEventListener('click', e => {
                     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
                     var token = result.credential.accessToken;
                     window.location.href = "#main";
-                    
+
                 }
                 // The signed-in user info.
                 var user = result.user;
@@ -147,7 +149,7 @@ function openFilePicker(selection) {
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
         window.location.href = "#liamneeson";
         uploadToStorage(imageUri);
-         
+
     }, function cameraError(error) {
         console.debug("Unable to obtain picture: " + error, "app");
 
@@ -161,7 +163,7 @@ function openCamera(selection) {
 
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
         window.location.href = "#liamneeson";
-        uploadToStorage(imageUri);        
+        uploadToStorage(imageUri);
 
     }, function cameraError(error) {
         console.debug("Unable to obtain picture: " + error, "app");
@@ -199,22 +201,30 @@ function displayImage(imgUri) {
     }
 }
 function uploadToDatabase(downloadURL) {
-    user = firebase.auth().currentUser;
-    var postKey = firebase.database().ref('Users/' + user.uid + '/' + wardrobe + '/Category/').push().key;
+    var postKey = firebase.database().ref('Users/' + getCurrentUser().uid + '/' + wardrobe + '/Category/').push().key;
     var updates = {};
     var postData = {
-    url: downloadURL
+        url: downloadURL
     };
-    updates['Users/' + user.uid + '/' + wardrobe + '/Category/'+ postKey] = postData;
-    firebase.database().ref().update(updates);  
+    updates['Users/' + getCurrentUser().uid + '/' + wardrobe + '/Category/' + postKey] = postData;
+    firebase.database().ref().update(updates);
 }
 
+// Takes the date and changes it to a unique name 
+function uniqueNameFile() {
+    const date = new Date();
+    return date.getTime().toString()
+}
+
+// takes the logged-in user
+function getCurrentUser() {
+    return firebase.auth().currentUser;
+}
 
 function uploadToStorage(imgUri) {
     var imgStorage = 'data:image/jpg;base64, ' + imgUri;
-    user = firebase.auth().currentUser;
-    var storageRef = firebase.storage().ref(user.uid + '/' + 'Clothes/Photo'); // może by dać żeby user sobie wymyślał nazwe dla tego zdjęcia? bo jak inaczej to zrobić unikalne every time?
 
+    var storageRef = firebase.storage().ref(getCurrentUser().uid + '/' + 'Clothes/' + uniqueNameFile());
     var uploadTask = storageRef.putString(imgStorage, 'data_url');
     uploadTask.on('state_changed', function (snapshot) {
 
@@ -230,47 +240,46 @@ function uploadToStorage(imgUri) {
 
 function load() {
 
-var user = firebase.auth().currentUser;
-var token = firebase.auth().currentUser.uid;
-if (user) {
-  // User is signed in.
-   queryDatabse(token);
-} else {
-  // No user is signed in.
-}
-
+    var token = getCurrentUser().uid;
+    if (getCurrentUser()) {
+        // User is signed in.
+        queryDatabse(token);
+    } else {
+        // No user is signed in.
+    }
 };
+
+
 let img_index = 0;
 // na razie chciałam, żeby przy zalogowaniu dodało od razu istniejące szafy, brak obsługi błedów jak jest 0 szaf, tego once tam trzeba się będzie pozbyć później
-function queryDatabse(token){ // holy fuck there's a lot of bullshit down here...
+function queryDatabse(token) { // holy fuck there's a lot of bullshit down here...
 
-    return firebase.database().ref('Users/'+ token + '/').once('value').then(function(snapshot) {
+    return firebase.database().ref('Users/' + token + '/').once('value').then(function (snapshot) {
         var postObject = snapshot.val();
-        var warNum = Object.getOwnPropertyNames(postObject).toString();     
+        var warNum = Object.getOwnPropertyNames(postObject).toString();
 
         var wardrobeAmountArray = warNum.split(",");
 
         img_index = wardrobeAmountArray.length + 1;
 
-        for(var i = 1; i <= wardrobeAmountArray.length; i++)
-        {
-        const img = $('<img />').attr({   // zrobić z tego może funkcje bo sie kod dubluje
-            'id': 'myImage' + i,
-            'src': 'img/wardrobe.svg',
-            'class': 'myWardrobe',
-            'width': 96.55,
-            'height': 100,
-            'href': '#wardrobe-cats'
-        }).appendTo('.menu-wardrobe');
+        for (var i = 1; i <= wardrobeAmountArray.length; i++) {
+            const img = $('<img />').attr({   // zrobić z tego może funkcje bo sie kod dubluje
+                'id': 'myImage' + i,
+                'src': 'img/wardrobe.svg',
+                'class': 'myWardrobe',
+                'width': 96.55,
+                'height': 100,
+                'href': '#wardrobe-cats'
+            }).appendTo('.menu-wardrobe');
 
-        $("#myImage" + i).wrap($('<a>', {
-            href: '#wardrobe-cats'
-        }));
+            $("#myImage" + i).wrap($('<a>', {
+                href: '#wardrobe-cats'
+            }));
 
-        $('.menu-wardrobe').append(wardrobeAmountArray[i - 1]);
+            $('.menu-wardrobe').append(wardrobeAmountArray[i - 1]);
 
         }
-      
+
     });
 }
 
@@ -303,7 +312,7 @@ $(document).ready(function () {
         $("#btnFloatingAction").slideToggle();
     });
 
-    
+
 
 
     $('.btn-war').click(function () {
@@ -333,7 +342,7 @@ $(document).ready(function () {
 
     $('#addImage').click(function () { // dodawanie zdjecia, wysyłka do bazy? 
 
-        console.log(user);
+        console.log(getCurrentUser());
         console.log(wardrobe);
 
     });
