@@ -486,7 +486,7 @@ b:hover{
     width: 60px;
     height: 60px;
     left: calc(50% - 20px/2 + 115px);
-    bottom: calc(50% - 1200px/2 + 303px);
+    bottom: calc(50% - 1150px/2 + 303px);
     font-size: 36px;
     text-align: center;
     
@@ -684,6 +684,29 @@ select {
 #add {
     font-size: 12px;
     background-color: #2F80ED;
+}
+
+.btn-ok {
+    position: fixed;
+    background: #5ADB90;
+    width: 60px;
+    height: 60px;
+    left: calc(50% - 20px/2 + 115px);
+    bottom: calc(50% - 1150px/2 + 303px);
+    font-size: 36px;
+    text-align: center;
+}
+
+.btn-back {
+    position: fixed;
+    background: #2F80ED;
+    width: 60px;
+    height: 60px;
+    left: calc(50% - 70px/2 - 115px);
+    bottom: calc(50% - 1150px/2 + 303px);
+    background: #C19FE4;
+    font-size: 36px;
+    text-align: center;
 }
 
 /*chart */
