@@ -55,7 +55,6 @@ btnLogin.addEventListener('click', e => {
     firebase.auth().signInWithEmailAndPassword(email, password) // zmien reszte 
         .then(function (result) {
             window.location.href = "#main";
-            getLengthOfStorage();
             load();
         }).catch(function (error) {
             alert(error);
@@ -71,18 +70,10 @@ btnGoogleLogin.addEventListener('click', e => {
         .then(function () {
             return firebase.auth().getRedirectResult();
         }).then(function (result) {
-            // This gives you a Google Access Token.
-            // You can use it to access the Google API.
-            var token = result.credential.accessToken;
-            // The signed-in user info.
-            var user = result.user;
-            // console.log(user);
             window.location.href = "#main";
-            // ...
         }).catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
+            alert(error.message);
+
         });
 });
 
@@ -95,15 +86,10 @@ btnFacebookLogin.addEventListener('click', e => {
                 return firebase.auth().getRedirectResult();
             }).then(function (result) {
                 if (result.credential) {
-                    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-                    var token = result.credential.accessToken;
                     window.location.href = "#main";
-
                 }
-                // The signed-in user info.
                 var user = result.user;
             }).catch(function (error) {
-                // Handle Errors here.
                 if (error.code === "auth/account-exists-with-different-credential") {
                     alert("This email is already used!");
                 }
@@ -174,7 +160,6 @@ function openCamera(selection) {
 // Option for openFilePicker() and openCamera()
 function setOptions(srcType) {
     const options = {
-        // Some common settings are 20, 50, and 100
         quality: 50,
         destinationType: Camera.DestinationType.DATA_URL,
         // In this app, dynamically set the picture source, Camera or photo gallery
