@@ -1,13 +1,11 @@
-var user;
 var wardrobe;
-
 
 function init() {
     document.addEventListener('deviceready', onDeviceReady, false);
 }
 
 function onDeviceReady() {
-    console.log(navigator.camera);
+    //console.log(navigator.camera);
 }
 const btnLogin = document.getElementById('btnLogin');
 const txtEmailLogin = document.getElementById('txtEmailLogin');
@@ -33,7 +31,7 @@ btnSignUp.addEventListener('click', function () {
         return;
     }
     if (password === passwordConfirm) {
-        cordova.plugins.firebase.auth.createUserWithEmailAndPassword(email, password).then(function () {
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(function () {
             alert("Account created");
             window.location.href = "#login";
         }).catch(function (error) {
@@ -53,10 +51,10 @@ btnLogin.addEventListener('click', e => {
         alert("Fill in all fields");
         return;
     }
-    cordova.plugins.firebase.auth.signInWithEmailAndPassword(email, password)
-        .then(function (result) {
-            user = result.uid;
+    firebase.auth().signInWithEmailAndPassword(email, password) // zmien reszte 
+        .then(function (result) {           
             window.location.href = "#main";
+            load();
         }).catch(function (error) {
             alert(error);
         });
@@ -76,6 +74,7 @@ btnGoogleLogin.addEventListener('click', e => {
             var token = result.credential.accessToken;
             // The signed-in user info.
             var user = result.user;
+            // console.log(user);
             window.location.href = "#main";
             // ...
         }).catch(function (error) {
@@ -97,7 +96,7 @@ btnFacebookLogin.addEventListener('click', e => {
                     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
                     var token = result.credential.accessToken;
                     window.location.href = "#main";
-                    // ...
+                    
                 }
                 // The signed-in user info.
                 var user = result.user;
@@ -113,11 +112,12 @@ btnFacebookLogin.addEventListener('click', e => {
 // Reset password
 btnSendPass.addEventListener('click', e => {
     const email = txtEmailReset.value;
+    var auth = firebase.auth();
     if (email == "") {
         alert("Fill in all fields");
         return 0;
     }
-    cordova.plugins.firebase.auth.sendPasswordResetEmail(email).then(function () {
+    auth.sendPasswordResetEmail(email).then(function () {
         alert("email sent");
     }).catch(function (error) {
         alert(error);
@@ -146,9 +146,8 @@ function openFilePicker(selection) {
 
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
         window.location.href = "#liamneeson";
-
-        storageImage(imageUri);
-
+        uploadToStorage(imageUri);
+         
     }, function cameraError(error) {
         console.debug("Unable to obtain picture: " + error, "app");
 
@@ -162,8 +161,7 @@ function openCamera(selection) {
 
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
         window.location.href = "#liamneeson";
-
-        storageImage(imageUri);
+        uploadToStorage(imageUri);        
 
     }, function cameraError(error) {
         console.debug("Unable to obtain picture: " + error, "app");
@@ -200,36 +198,88 @@ function displayImage(imgUri) {
         document.getElementById('addImg').src = imgUri;
     }
 }
-
-function writeUserImage(imgUri) {
+function uploadToDatabase(downloadURL) {
     user = firebase.auth().currentUser;
-    firebase.database().ref('Users/' + user.uid + '/' + wardrobe + '/Category/').set({
-        email: user.email,
-        name: user.displayName,
-        picture: imgUri
-    });
+    var postKey = firebase.database().ref('Users/' + user.uid + '/' + wardrobe + '/Category/').push().key;
+    var updates = {};
+    var postData = {
+    url: downloadURL
+    };
+    updates['Users/' + user.uid + '/' + wardrobe + '/Category/'+ postKey] = postData;
+    firebase.database().ref().update(updates);  
 }
 
 
-function storageImage(imgUri) {
+function uploadToStorage(imgUri) {
     var imgStorage = 'data:image/jpg;base64, ' + imgUri;
     user = firebase.auth().currentUser;
-    var storageRef = firebase.storage().ref(user.uid + '/' + 'Clothes/Photo')
+    var storageRef = firebase.storage().ref(user.uid + '/' + 'Clothes/Photo'); // może by dać żeby user sobie wymyślał nazwe dla tego zdjęcia? bo jak inaczej to zrobić unikalne every time?
 
     var uploadTask = storageRef.putString(imgStorage, 'data_url');
     uploadTask.on('state_changed', function (snapshot) {
 
     }, function (error) {
-
+        console.log(error)
     }, function () {
         var downloadURL = uploadTask.snapshot.downloadURL;
-        writeUserImage(downloadURL);
+        uploadToDatabase(downloadURL);
         displayImage(downloadURL);
 
     });
-
-
 }
+
+function load() {
+
+var user = firebase.auth().currentUser;
+var token = firebase.auth().currentUser.uid;
+if (user) {
+  // User is signed in.
+   queryDatabse(token);
+} else {
+  // No user is signed in.
+}
+
+};
+let img_index = 0;
+// na razie chciałam, żeby przy zalogowaniu dodało od razu istniejące szafy, brak obsługi błedów jak jest 0 szaf, tego once tam trzeba się będzie pozbyć później
+function queryDatabse(token){ // holy fuck there's a lot of bullshit down here...
+
+    return firebase.database().ref('Users/'+ token + '/').once('value').then(function(snapshot) {
+        var postObject = snapshot.val();
+        var warNum = Object.getOwnPropertyNames(postObject).toString();     
+
+        var wardrobeAmountArray = warNum.split(",");
+
+        img_index = wardrobeAmountArray.length + 1;
+
+        for(var i = 1; i <= wardrobeAmountArray.length; i++)
+        {
+        const img = $('<img />').attr({   // zrobić z tego może funkcje bo sie kod dubluje
+            'id': 'myImage' + i,
+            'src': 'img/wardrobe.svg',
+            'class': 'myWardrobe',
+            'width': 96.55,
+            'height': 100,
+            'href': '#wardrobe-cats'
+        }).appendTo('.menu-wardrobe');
+
+        $("#myImage" + i).wrap($('<a>', {
+            href: '#wardrobe-cats'
+        }));
+
+        $('.menu-wardrobe').append(wardrobeAmountArray[i - 1]);
+
+        }
+      
+    });
+}
+
+
+
+
+
+
+
 
 
 //Mobile navigation
@@ -253,7 +303,7 @@ $(document).ready(function () {
         $("#btnFloatingAction").slideToggle();
     });
 
-    let img_index = 1;
+    
 
 
     $('.btn-war').click(function () {

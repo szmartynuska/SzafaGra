@@ -580,13 +580,17 @@
 
 
         <div class="input-container">
-             <input id="city">
-             <button id="getWeather">Get weather</button> 
-        </div> 
+            <input id="city" type="text" placeholder=" Enter city name" required>
+            <label for="city" class="input-icon">
+                <i class="fas fa-cloud"></i>
+            </label>
+            <button id="getWeather">Get weather</button>
+        </div>
 
         <div class="aspect-ratio">
             <canvas id="chart"></canvas>
         </div>
+        <!-- czy to dalej musi tu być?
         <div class="dropup">
 
             <ul id="btnFloatingAction">
@@ -604,7 +608,7 @@
             <button type="button" class="btn btn-slide">
                 <i class="fas fa-plus"></i>
             </button>
-        </div>
+        </div> -->
 
     </div>
 
