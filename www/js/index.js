@@ -5,7 +5,7 @@ function init() {
 }
 
 function onDeviceReady() {
-    //console.log(navigator.camera);
+    console.log(navigator.camera);
 }
 const btnLogin = document.getElementById('btnLogin');
 const txtEmailLogin = document.getElementById('txtEmailLogin');
@@ -55,7 +55,7 @@ btnLogin.addEventListener('click', e => {
     firebase.auth().signInWithEmailAndPassword(email, password) // zmien reszte 
         .then(function (result) {
             window.location.href = "#main";
-            load();
+            loadWardrobes();
         }).catch(function (error) {
             alert(error);
         });
@@ -71,6 +71,7 @@ btnGoogleLogin.addEventListener('click', e => {
             return firebase.auth().getRedirectResult();
         }).then(function (result) {
             window.location.href = "#main";
+            loadWardrobes();
         }).catch(function (error) {
             alert(error.message);
 
@@ -87,6 +88,7 @@ btnFacebookLogin.addEventListener('click', e => {
             }).then(function (result) {
                 if (result.credential) {
                     window.location.href = "#main";
+                    loadWardrobes();
                 }
                 var user = result.user;
             }).catch(function (error) {
@@ -185,6 +187,16 @@ function displayImage(imgUri) {
         document.getElementById('addImg').src = imgUri;
     }
 }
+var warName;
+function setWardrobeName() {
+    var name = prompt("Please enter wardrobe name, 10 characters max", "Ciuszki");
+    if ( name == '' || name.length > 10) {
+        alert("Enter valid name!");
+            return;   
+    }
+    //console.log(warName);
+    warName = name;
+}
 function uploadToDatabase(downloadURL) {
     var postKey = firebase.database().ref('Users/' + getCurrentUser().uid + '/' + wardrobe + '/Category/').push().key;
     var updates = {};
@@ -223,7 +235,7 @@ function uploadToStorage(imgUri) {
     });
 }
 
-function load() {
+function loadWardrobes(){
 
     var token = getCurrentUser().uid;
     if (getCurrentUser()) {
@@ -235,21 +247,22 @@ function load() {
 };
 
 
-let img_index = 0;
-// na razie chciałam, żeby przy zalogowaniu dodało od razu istniejące szafy, brak obsługi błedów jak jest 0 szaf, tego once tam trzeba się będzie pozbyć później
-function queryDatabse(token) { // holy fuck there's a lot of bullshit down here...
+// na razie chciałam, żeby przy zalogowaniu dodało od razu istniejące szafy, tego once tam trzeba się będzie pozbyć później
+function queryDatabse(token) { 
 
     return firebase.database().ref('Users/' + token + '/').once('value').then(function (snapshot) {
         var postObject = snapshot.val();
+        if (postObject == null)
+        {
+            return;
+        }
         var warNum = Object.getOwnPropertyNames(postObject).toString();
-
         var wardrobeAmountArray = warNum.split(",");
-
-        img_index = wardrobeAmountArray.length + 1;
+  
 
         for (var i = 1; i <= wardrobeAmountArray.length; i++) {
-            const img = $('<img />').attr({   // zrobić z tego może funkcje bo sie kod dubluje
-                'id': 'myImage' + i,
+             const img = $('<img />').attr({   // zrobić z tego może funkcje bo sie kod dubluje
+                'id': wardrobeAmountArray[i - 1],
                 'src': 'img/wardrobe.svg',
                 'class': 'myWardrobe',
                 'width': 96.55,
@@ -257,22 +270,23 @@ function queryDatabse(token) { // holy fuck there's a lot of bullshit down here.
                 'href': '#wardrobe-cats'
             }).appendTo('.menu-wardrobe');
 
-            $("#myImage" + i).wrap($('<a>', {
+            $("#myImage" + wardrobeAmountArray[i - 1]).wrap($('<a>', {
                 href: '#wardrobe-cats'
             }));
 
-            $('.menu-wardrobe').append(wardrobeAmountArray[i - 1]);
-
+            $('.menu-wardrobe').append(wardrobeAmountArray[i - 1]);  
         }
 
     });
 }
 
+/*function getActivePage(){
+    return window.location.href;
+}
 
-
-
-
-
+$(document).on('pageshow', 'body', function() { // id aktywnej str
+   //console.log($.mobile.activePage.attr('id'));
+});*/
 
 
 
@@ -298,42 +312,35 @@ $(document).ready(function () {
     });
 
 
-
-
     $('.btn-war').click(function () {
-        const img = $('<img />').attr({
-            'id': 'myImage' + img_index,
-            'src': 'img/wardrobe.svg',
-            'class': 'myWardrobe',
-            'width': 96.55,
-            'height': 100,
-            'href': '#wardrobe-cats'
-        }).appendTo('.menu-wardrobe');
+        setWardrobeName();
+        if ( warName == '' || warName.length > 10) {
+            
+            return;  
+    }
+    warName = warName.replace(/\s/g, '');
+    const img = $('<img />').attr({
+        'id': warName,
+        'src': 'img/wardrobe.svg',
+        'class': 'myWardrobe',
+        'width': 96.55,
+        'height': 100,
+        'href': '#wardrobe-cats'
+    }).appendTo('.menu-wardrobe');
 
-        $("#myImage" + img_index).wrap($('<a>', {
-            href: '#wardrobe-cats'
-        }));
+    $("#" + warName).wrap($('<a>', {
+        href: '#wardrobe-cats'
+    }));
 
-
-
-        wardrobe = "Wardrobe " + img_index;
-        $('.menu-wardrobe').append(wardrobe);
-
-        img_index++;
-
-    });
-
-    $('#war-nr').append(img_index);
-
-    $('#addImage').click(function () { // dodawanie zdjecia, wysyłka do bazy? 
-
-        console.log(getCurrentUser());
-        console.log(wardrobe);
+    wardrobe = warName;
+    $('.menu-wardrobe').append(warName);
+    warName = '';
+    
 
     });
-
-
-    //dodawanie list z tagami do zdjecia
+    //$('#war-nr').text(wardrobe);
+    
+        //dodawanie list z tagami do zdjecia
 
     var target = $("div#target");
     var n = function () {
@@ -380,6 +387,7 @@ $(document).ready(function () {
         var target = $("#target").find("#newInput-" + this.id);
         $(target).remove();
     });
+
 
 
     // get data for chart
@@ -433,25 +441,33 @@ $(document).ready(function () {
                 labels: [date[0], date[1], date[2], date[3], date[4]],
                 datasets: [{
                     label: "Temperature",
-                    borderColor: "#80b6f4",
+                    borderColor: "#80b6f4",                   
                     pointBorderColor: "#80b6f4",
                     pointBackgroundColor: "#80b6f4",
                     pointHoverBackgroundColor: "#80b6f4",
                     pointHoverBorderColor: "#80b6f4",
-                    pointBorderWidth: 10,
+                    pointBorderWidth: 15,
                     pointHoverRadius: 10,
-                    pointHoverBorderWidth: 1,
-                    pointRadius: 3,
+                    pointHoverBorderWidth: 10,
+                    pointRadius: 4,
                     fill: false,
                     borderWidth: 4,
                     data: [temp[0], temp[1], temp[2], temp[3], temp[4]]
                 }]
             },
             options: {
-
                 maintainAspectRatio: false,
                 legend: {
                     display: false
+                },
+                tooltips: {       
+                    displayColors: false,
+                    bodyFontSize: 14,
+                    callbacks: {
+                        label: function(tooltipItems, data) { 
+                            return tooltipItems.yLabel + '°C';
+                        }
+                    }
                 },
                 scales: {
                     yAxes: [{
@@ -460,7 +476,7 @@ $(document).ready(function () {
                             fontStyle: "bold",
                             beginAtZero: true,
                             maxTicksLimit: 5,
-                            padding: 10
+                            padding: 15
                         },
                         gridLines: {
                             drawTicks: false,
