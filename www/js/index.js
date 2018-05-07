@@ -311,7 +311,7 @@ function loadClothes(){
 }
 // download and display clothes for particular wardrobe and category
 function queryDatabseForClothes(token) {
-   
+   $( "#putImage" ).empty();
     return firebase.database().ref('Users/' + getCurrentUser().uid + '/' + wardrobe + '/' + category + '/').on('value', function(snapshot) {
         var postObject = snapshot.val();
         if (postObject === null) {
