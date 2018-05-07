@@ -719,6 +719,18 @@ select {
     text-align: center;
 }
 
+/* loading pictures */
+
+.i{
+     height: 50%;
+    width: 50%;
+}
+.contentImage{
+    height: 100%; 
+    width: 100%; 
+    object-fit: contain;
+}
+
 /*chart */
 .aspect-ratio{
     position: absolute;

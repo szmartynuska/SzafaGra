@@ -241,9 +241,7 @@ function uploadToStorage(imgUri) {
         console.log(error)
     }, function () {
         var downloadURL = uploadTask.snapshot.downloadURL;
-        uploadToDatabase(downloadURL);
-        //displayImage(downloadURL);
-
+        uploadToDatabase(downloadURL);      
     });
 }
 
@@ -273,7 +271,7 @@ function moveToWardrobeCats(getElement) {
     });
 }
 
-
+// loading wardrobes to #main
 function queryDatabseForWardrobes(token) {
     
     return firebase.database().ref('Users/' + token + '/').once('value').then(function (snapshot) {
@@ -283,7 +281,6 @@ function queryDatabseForWardrobes(token) {
         }
         var warNum = Object.getOwnPropertyNames(postObject).toString();
         var wardrobeAmountArray = warNum.split(",");
-
 
         for (var i = 1; i <= wardrobeAmountArray.length; i++) {
             const img = $('<img />').attr({   // zrobić z tego może funkcje bo sie kod dubluje
@@ -320,26 +317,23 @@ function queryDatabseForClothes(token) {
         if (postObject === null) {
             return;
         }
-        var keys = Object.keys(postObject);
-        var currentRow;
+        var keys = Object.keys(postObject);        
         for(var i = 0; i < keys.length; i++)
         {
-            var currentObj = postObject[keys[i]];
-            
-            //new row on every 3 entry
-            // col-lg-4
+            var currentObj = postObject[keys[i]];          
+            //displaying image on #clothes
             if ( i % 3 == 0){
-                currentRow = document.createElement("div");
-                $(currentRow).addClass("row");
-                $("#putImage").append(currentRow);
+                var div = document.createElement("div");
+                $(div).addClass("i");
+               // $(".i").css("width", 50);
+                //$(".i").css("height", 50);
+                $("#putImage").append(div);
             }
-            var col = document.createElement("div");
-            $(col).addClass("col-lg-4");
+            
             var image = document.createElement("img");
             image.src = currentObj.url;
             $(image).addClass("contentImage");
-            $(col).append(image);
-            $(currentRow).append(col);
+            $(div).append(image);
         }
 
     });
