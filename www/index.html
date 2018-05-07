@@ -185,29 +185,29 @@
             </div>
 
         </div>
-        <p id="war-nr">Wardrobe </p>
+        <p id="war-nr">Wardrobe </p>    <!-- jakby ktoś tu coś kombinował z nazwami kategorii to niech zmieni też id każdej z nich -->
         <div class="wear" id="wear">
-            <span class="cat1" id="cat1">
+            <span class="cat1" id="Tops & Sweaters">
                 <a href="#clothes">
                     <img src="img/shirt.svg" alt="Tops & Sweaters">
                 </a> Tops & Sweaters</span>
-            <span class="cat2" id="cat2">
+            <span class="cat2" id="Dresses & Skirts">
                 <a href="#clothes">
                     <img src="img/dress.svg" alt="Dresses & Skirts">
                 </a> Dresses & Skirts</span>
-            <span class="cat3" id="cat3">
+            <span class="cat3" id="Trousers & Shorts">
                 <a href="#clothes">
                     <img src="img/jeans.svg" alt="Trousers & Shorts">
                 </a> Trousers & Shorts</span>
-            <span class="cat4" id="cat4">
+            <span class="cat4" id="Outerwear">
                 <a href="#clothes">
                     <img src="img/cloak.svg" alt="Outerwear">
                 </a> Outerwear</span>
-            <span class="cat5" id="cat5">
+            <span class="cat5" id="Footwear">
                 <a href="#clothes">
                     <img src="img/shoe.svg" alt="Footwear">
                 </a> Footwear</span>
-            <span class="cat6" id="cat6">
+            <span class="cat6" id="Headgear">
                 <a href="#clothes">
                     <img src="img/hat.svg" alt="Headgear">
                 </a> Headgear</span>
@@ -272,26 +272,30 @@
                     </li>
                 </ul>
             </div>
-
-            <div class="dropup">
-
-                <ul id="btnFloatingAction">
-                    <li>
-                        <button onclick="openCamera()" type="button" class="btn btn-pic">
-                            <i class="fas fa-camera"></i>
-                        </button>
-                    </li>
-                    <li>
-                        <button onclick="openFilePicker()" type="button" class="btn btn-gal">
-                            <i class="fas fa-images"></i>
-                        </button>
-                    </li>
-                </ul>
-                <button type="button" class="btn btn-slide">
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
         </div>
+
+        <div id="putImage">
+
+        </div>
+
+        <div class="dropup">
+            <ul id="btnFloatingAction">
+                <li>
+                    <button onclick="openCamera()" type="button" class="btn btn-pic">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </li>
+                <li>
+                    <button onclick="openFilePicker()" type="button" class="btn btn-gal">
+                        <i class="fas fa-images"></i>
+                    </button>
+                </li>
+            </ul>
+            <button type="button" class="btn btn-slide">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+        
 
     </div>
 
@@ -354,7 +358,7 @@
                                 <div class="col-sm-2">
                                     <div class="categories">
                                         <span>Category:</span>
-                                        <select class="form-control">
+                                        <select class="form-control" id="selectCategory">
                                             <option>Select</option>
                                             <option>Tops & Sweaters</option>
                                             <option>Dresses</option>

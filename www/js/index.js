@@ -1,4 +1,3 @@
-var wardrobe;
 
 function init() {
     document.addEventListener('deviceready', onDeviceReady, false);
@@ -20,8 +19,10 @@ const btnLogOut = document.getElementById('btnLogOut');
 const txtEmailReset = document.getElementById('txtEmailReset');
 const btnSendPass = document.getElementById('btnSendPass');
 const btnAcceptImage = document.getElementById('btnAcceptImage');
-
-
+var wardrobe;
+var category;
+var warName;
+var selectedCategory;
 // Sign up with email and password
 btnSignUp.addEventListener('click', function () {
     const email = txtEmailRegistration.value;
@@ -53,7 +54,7 @@ btnLogin.addEventListener('click', e => {
         alert("Fill in all fields");
         return;
     }
-    firebase.auth().signInWithEmailAndPassword(email, password) // zmien reszte 
+    firebase.auth().signInWithEmailAndPassword(email, password)  
         .then(function (result) {
             window.location.href = "#main";
             loadWardrobes();
@@ -190,7 +191,7 @@ function displayImage(imgUri) {
         document.getElementById('addedImg').src = 'data:image/png;base64,' + imgUri;
     }
 }
-var warName;
+
 function setWardrobeName() {
     var name = prompt("Please enter wardrobe name, 10 characters max", "Ciuszki");
     if (name == '' || name.length > 10) {
@@ -201,12 +202,13 @@ function setWardrobeName() {
     warName = name;
 }
 function uploadToDatabase(downloadURL) {
-    var postKey = firebase.database().ref('Users/' + getCurrentUser().uid + '/' + wardrobe + '/Category/').push().key;
+
+    var postKey = firebase.database().ref('Users/' + getCurrentUser().uid + '/' + wardrobe + '/' + selectedCategory + '/').push().key;
     var updates = {};
     var postData = {
         url: downloadURL
     };
-    updates['Users/' + getCurrentUser().uid + '/' + wardrobe + '/Category/' + postKey] = postData;
+    updates['Users/' + getCurrentUser().uid + '/' + wardrobe + '/' + selectedCategory + '/' + postKey] = postData;
     firebase.database().ref().update(updates);
     alert("successful send!");
 }
@@ -255,7 +257,7 @@ function loadWardrobes() {
         // No user is signed in.
     }
 };
-
+// display wardrobe name in wardrobe-cats, get wardrobe name for database
 function moveToWardrobeCats(getElement) {
     const wardrobeButton = document.getElementById(getElement);
     wardrobeButton.addEventListener('click', function () {
@@ -268,7 +270,7 @@ function moveToWardrobeCats(getElement) {
 
 // na razie chciałam, żeby przy zalogowaniu dodało od razu istniejące szafy, tego once tam trzeba się będzie pozbyć później
 function queryDatabse(token) {
-
+    console.log("guery database " + token);
     return firebase.database().ref('Users/' + token + '/').once('value').then(function (snapshot) {
         var postObject = snapshot.val();
         if (postObject == null) {
@@ -289,12 +291,51 @@ function queryDatabse(token) {
             }).appendTo('.menu-wardrobe');
 
             moveToWardrobeCats(wardrobeAmountArray[i - 1]);
-
-
             $('.menu-wardrobe').append(wardrobeAmountArray[i - 1]);
         }
 
     });
+}
+
+
+function loadClothes(){
+    var token = getCurrentUser().uid;
+        if (getCurrentUser()) {
+            // User is signed in.
+            queryDatabseForClothes(token);
+        } else {
+            // No user is signed in.
+        }
+}
+// download and display clothes for particular wardrobe and category
+function queryDatabseForClothes(token) {
+    return firebase.database().ref('Users/' + getCurrentUser().uid + '/' + wardrobe + '/' + category + '/').on('value', function(snapshot) {
+        var postObject = snapshot.val();
+        console.log("postobject val " + postObject);
+        var keys = Object.keys(postObject);
+        var currentRow;
+        for(var i = 0; i < keys.length; i++)
+        {
+            var currentObj = postObject[keys[i]];
+            console.log("current obj url " + currentObj.url);
+            //new row on every 3 entry
+            // col-lg-4
+            if ( i % 3 == 0){
+                currentRow = document.createElement("div");
+                $(currentRow).addClass("row");
+                $("#putImage").append(currentRow);
+            }
+            var col = document.createElement("div");
+            $(col).addClass("col-lg-4");
+            var image = document.createElement("img");
+            image.src = currentObj.url;
+            $(image).addClass("contentImage");
+            $(col).append(image);
+            $(currentRow).append(col);
+        }
+
+    });
+
 }
 
 /*function getActivePage(){
@@ -328,12 +369,12 @@ $(document).ready(function () {
         $("#btnFloatingAction").slideToggle();
     });
 
-
+    // display wardrobe with given name
     $('.btn-war').click(function () {
         setWardrobeName();
         const checkName = document.getElementById(warName);
         if (checkName !== null) {
-            alert('This name is already exist!');
+            alert('This name already exist!');
             return;
         } else if (warName == '' || warName.length > 10) {
             return;
@@ -349,14 +390,24 @@ $(document).ready(function () {
             }).appendTo('.menu-wardrobe');
 
             $('.menu-wardrobe').append(warName);
-            warName = '';
-
             moveToWardrobeCats(warName);
-
-
+            warName = '';
         }
     });
-    //$('#war-nr').text(wardrobe);
+
+    // get the category name, launch function for loading clothes
+    $('#wear span').click(function () {
+        
+         category = $(this).attr("id");
+         loadClothes();
+        console.log('kategoria user klika' + category);
+       
+    });
+    // get the selected category by user
+    $('#selectCategory').change(function () {
+       selectedCategory = $('#selectCategory').val();
+        console.log('kategoria user chce wysłać do bazy' + selectedCategory);
+    });
 
     //dodawanie list z tagami do zdjecia
 
