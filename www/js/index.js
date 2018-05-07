@@ -55,7 +55,7 @@ btnLogin.addEventListener('click', e => {
         alert("Fill in all fields");
         return;
     }
-    firebase.auth().signInWithEmailAndPassword(email, password)  
+    firebase.auth().signInWithEmailAndPassword(email, password)
         .then(function (result) {
             window.location.href = "#main";
             loadWardrobes();
@@ -241,7 +241,7 @@ function uploadToStorage(imgUri) {
         console.log(error)
     }, function () {
         var downloadURL = uploadTask.snapshot.downloadURL;
-        uploadToDatabase(downloadURL);      
+        uploadToDatabase(downloadURL);
     });
 }
 
@@ -273,7 +273,7 @@ function moveToWardrobeCats(getElement) {
 
 // loading wardrobes to #main
 function queryDatabseForWardrobes(token) {
-    
+
     return firebase.database().ref('Users/' + token + '/').once('value').then(function (snapshot) {
         var postObject = snapshot.val();
         if (postObject == null) {
@@ -300,36 +300,35 @@ function queryDatabseForWardrobes(token) {
 }
 
 
-function loadClothes(){
+function loadClothes() {
     var token = getCurrentUser().uid;
-        if (getCurrentUser()) {
-            // User is signed in.
-            queryDatabseForClothes(token);
-        } else {
-            // No user is signed in.
-        }
+    if (getCurrentUser()) {
+        // User is signed in.
+        queryDatabseForClothes(token);
+    } else {
+        // No user is signed in.
+    }
 }
 // download and display clothes for particular wardrobe and category
 function queryDatabseForClothes(token) {
-   
-    return firebase.database().ref('Users/' + getCurrentUser().uid + '/' + wardrobe + '/' + category + '/').on('value', function(snapshot) {
+
+    return firebase.database().ref('Users/' + getCurrentUser().uid + '/' + wardrobe + '/' + category + '/').on('value', function (snapshot) {
         var postObject = snapshot.val();
         if (postObject === null) {
             return;
         }
-        var keys = Object.keys(postObject);        
-        for(var i = 0; i < keys.length; i++)
-        {
-            var currentObj = postObject[keys[i]];          
+        var keys = Object.keys(postObject);
+        for (var i = 0; i < keys.length; i++) {
+            var currentObj = postObject[keys[i]];
             //displaying image on #clothes
-            if ( i % 3 == 0){
+            if (i % 3 == 0) {
                 var div = document.createElement("div");
                 $(div).addClass("i");
-               // $(".i").css("width", 50);
+                // $(".i").css("width", 50);
                 //$(".i").css("height", 50);
                 $("#putImage").append(div);
             }
-            
+
             var image = document.createElement("img");
             image.src = currentObj.url;
             $(image).addClass("contentImage");
@@ -388,18 +387,18 @@ $(document).ready(function () {
 
     // get the category name, launch function for loading clothes
     $('#wear span').click(function () {
-         category = $(this).attr("id");
-         loadClothes();       
+        category = $(this).attr("id");
+        loadClothes();
     });
 
     // get the selected by user category 
     $('#selectCategory').change(function () {
-       selectedCategory = $('#selectCategory').val();
+        selectedCategory = $('#selectCategory').val();
     });
 
     // get the selected by user weather
     $('#selectWeather').change(function () {
-       selectedWeather = $('#selectWeather').val();
+        selectedWeather = $('#selectWeather').val();
     });
 
     //dodawanie list z tagami do zdjecia
@@ -456,19 +455,41 @@ $(document).ready(function () {
     var temp = [];
     var daysOfWeek;
     $("#getWeather").click(function () {
+        // var canvas = document.getElementById('chart');
+        // var ctx = document.getElementById('chart').getContext("2d");
+
+        // ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // var oldcanv = document.getElementById('chart');
+        // var divChart = document.getElementsByClassName('chartjs-size-monitor')[0];
+
+        // console.log(oldcanv);
+        // console.log(divChart);
+        // if (oldcanv !== null) {
+        //     document.getElementsByClassName('chartjs-size-monitor')[0].removeChild('chart');
+        //     document.getElementById('divChart').removeChild(divChart);
+
+        // }
+
+        // var canv = document.createElement('canvas');
+        // canv.id = 'chart';
+        // document.getElementById('divChart').appendChild(canv);
         var city = $("#city").val();
 
         var key = '33dbe3b930c23ad2c7a0630b49f3e440';
         var url = "https://api.openweathermap.org/data/2.5/forecast";
 
         $.get(url, { q: city, appid: key, units: 'metric' }, function (data) {
-
+            console.log("Data downloaded");
+            dateUTC = [];
+            temp = [];
             for (let i = 0; i < data.list.length; i += 8) {
                 dateUTC.push(data.list[i].dt);
                 temp.push(parseInt(data.list[i].main.temp));
 
             }
 
+            daysOfWeek = [];
             if (dateUTC.length == 5 && temp.length == 5) {
                 daysOfWeek = getDayOfWeek(dateUTC);
                 plot(daysOfWeek, temp);
@@ -491,73 +512,91 @@ $(document).ready(function () {
     };
 
     // chart    
+    var myChart;
     function plot(date, temp) {
 
         var ctx = document.getElementById('chart').getContext("2d");
+        if (myChart != null) {
+            // myChart.removeData();
+            // myChart.data.labels.pop();
+            // myChart.data.datasets.forEach((dataset) => {
+            // dataset.data.pop();
+            // });
 
-        var myChart = new Chart(ctx, {
+            myChart.data.labels = [date[0], date[1], date[2], date[3], date[4]];
+            // myChart.data.datasets.forEach((dataset) => {
+            myChart.data.datasets[0].data = [temp[0], temp[1], temp[2], temp[3], temp[4]];
+            // });
 
-            type: 'line',
-            data: {
-                labels: [date[0], date[1], date[2], date[3], date[4]],
-                datasets: [{
-                    label: "Temperature",
-                    borderColor: "#80b6f4",
-                    pointBorderColor: "#80b6f4",
-                    pointBackgroundColor: "#80b6f4",
-                    pointHoverBackgroundColor: "#80b6f4",
-                    pointHoverBorderColor: "#80b6f4",
-                    pointBorderWidth: 15,
-                    pointHoverRadius: 10,
-                    pointHoverBorderWidth: 10,
-                    pointRadius: 4,
-                    fill: false,
-                    borderWidth: 4,
-                    data: [temp[0], temp[1], temp[2], temp[3], temp[4]]
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                legend: {
-                    display: false
-                },
-                tooltips: {
-                    displayColors: false,
-                    bodyFontSize: 14,
-                    callbacks: {
-                        label: function (tooltipItems, data) {
-                            return tooltipItems.yLabel + '°C';
-                        }
-                    }
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            fontColor: "rgba(0,0,0,0.5)",
-                            fontStyle: "bold",
-                            beginAtZero: true,
-                            maxTicksLimit: 5,
-                            padding: 15
-                        },
-                        gridLines: {
-                            drawTicks: false,
-                            display: false
-                        }
+            console.log(myChart.data);
+            console.log(myChart.data.datasets);
 
-                    }],
-                    xAxes: [{
-                        gridLines: {
-                            zeroLineColor: "transparent"
-                        },
-                        ticks: {
-                            padding: 10,
-                            fontColor: "rgba(0,0,0,0.5)",
-                            fontStyle: "bold"
-                        }
+            myChart.update();
+        } else {
+            myChart = new Chart(ctx, {
+
+                type: 'line',
+                data: {
+                    labels: [date[0], date[1], date[2], date[3], date[4]],
+                    datasets: [{
+                        label: "Temperature",
+                        borderColor: "#80b6f4",
+                        pointBorderColor: "#80b6f4",
+                        pointBackgroundColor: "#80b6f4",
+                        pointHoverBackgroundColor: "#80b6f4",
+                        pointHoverBorderColor: "#80b6f4",
+                        pointBorderWidth: 15,
+                        pointHoverRadius: 10,
+                        pointHoverBorderWidth: 10,
+                        pointRadius: 4,
+                        fill: false,
+                        borderWidth: 4,
+                        data: [temp[0], temp[1], temp[2], temp[3], temp[4]]
                     }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+                    tooltips: {
+                        displayColors: false,
+                        bodyFontSize: 14,
+                        callbacks: {
+                            label: function (tooltipItems, data) {
+                                return tooltipItems.yLabel + '°C';
+                            }
+                        }
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                fontColor: "rgba(0,0,0,0.5)",
+                                fontStyle: "bold",
+                                beginAtZero: true,
+                                maxTicksLimit: 5,
+                                padding: 15
+                            },
+                            gridLines: {
+                                drawTicks: false,
+                                display: false
+                            }
+
+                        }],
+                        xAxes: [{
+                            gridLines: {
+                                zeroLineColor: "transparent"
+                            },
+                            ticks: {
+                                padding: 10,
+                                fontColor: "rgba(0,0,0,0.5)",
+                                fontStyle: "bold"
+                            }
+                        }]
+                    }
                 }
-            }
-        });
+            })
+        };
 
     };
 
