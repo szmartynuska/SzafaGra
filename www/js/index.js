@@ -311,7 +311,7 @@ function loadClothes() {
 }
 // download and display clothes for particular wardrobe and category
 function queryDatabseForClothes(token) {
-
+    $("#putImage").empty();
     return firebase.database().ref('Users/' + getCurrentUser().uid + '/' + wardrobe + '/' + category + '/').on('value', function (snapshot) {
         var postObject = snapshot.val();
         if (postObject === null) {
@@ -517,19 +517,8 @@ $(document).ready(function () {
 
         var ctx = document.getElementById('chart').getContext("2d");
         if (myChart != null) {
-            // myChart.removeData();
-            // myChart.data.labels.pop();
-            // myChart.data.datasets.forEach((dataset) => {
-            // dataset.data.pop();
-            // });
-
             myChart.data.labels = [date[0], date[1], date[2], date[3], date[4]];
-            // myChart.data.datasets.forEach((dataset) => {
             myChart.data.datasets[0].data = [temp[0], temp[1], temp[2], temp[3], temp[4]];
-            // });
-
-            console.log(myChart.data);
-            console.log(myChart.data.datasets);
 
             myChart.update();
         } else {
