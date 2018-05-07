@@ -190,9 +190,9 @@ function displayImage(imgUri) {
 var warName;
 function setWardrobeName() {
     var name = prompt("Please enter wardrobe name, 10 characters max", "Ciuszki");
-    if ( name == '' || name.length > 10) {
+    if (name == '' || name.length > 10) {
         alert("Enter valid name!");
-            return;   
+        return;
     }
     //console.log(warName);
     warName = name;
@@ -235,7 +235,7 @@ function uploadToStorage(imgUri) {
     });
 }
 
-function loadWardrobes(){
+function loadWardrobes() {
 
     var token = getCurrentUser().uid;
     if (getCurrentUser()) {
@@ -246,22 +246,28 @@ function loadWardrobes(){
     }
 };
 
+function moveToWardrobeCats(getElement) {
+    const wardrobeButton = document.getElementById(getElement);
+    wardrobeButton.addEventListener('click', function () {
+        window.location.href = '#wardrobe-cats';
+    });
+}
+
 
 // na razie chciałam, żeby przy zalogowaniu dodało od razu istniejące szafy, tego once tam trzeba się będzie pozbyć później
-function queryDatabse(token) { 
+function queryDatabse(token) {
 
     return firebase.database().ref('Users/' + token + '/').once('value').then(function (snapshot) {
         var postObject = snapshot.val();
-        if (postObject == null)
-        {
+        if (postObject == null) {
             return;
         }
         var warNum = Object.getOwnPropertyNames(postObject).toString();
         var wardrobeAmountArray = warNum.split(",");
-  
+
 
         for (var i = 1; i <= wardrobeAmountArray.length; i++) {
-             const img = $('<img />').attr({   // zrobić z tego może funkcje bo sie kod dubluje
+            const img = $('<img />').attr({   // zrobić z tego może funkcje bo sie kod dubluje
                 'id': wardrobeAmountArray[i - 1],
                 'src': 'img/wardrobe.svg',
                 'class': 'myWardrobe',
@@ -270,11 +276,10 @@ function queryDatabse(token) {
                 'href': '#wardrobe-cats'
             }).appendTo('.menu-wardrobe');
 
-            $("#myImage" + wardrobeAmountArray[i - 1]).wrap($('<a>', {
-                href: '#wardrobe-cats'
-            }));
+            moveToWardrobeCats(wardrobeAmountArray[i - 1]);
 
-            $('.menu-wardrobe').append(wardrobeAmountArray[i - 1]);  
+
+            $('.menu-wardrobe').append(wardrobeAmountArray[i - 1]);
         }
 
     });
@@ -314,33 +319,37 @@ $(document).ready(function () {
 
     $('.btn-war').click(function () {
         setWardrobeName();
-        if ( warName == '' || warName.length > 10) {
-            
-            return;  
-    }
-    warName = warName.replace(/\s/g, '');
-    const img = $('<img />').attr({
-        'id': warName,
-        'src': 'img/wardrobe.svg',
-        'class': 'myWardrobe',
-        'width': 96.55,
-        'height': 100,
-        'href': '#wardrobe-cats'
-    }).appendTo('.menu-wardrobe');
+        const checkName = document.getElementById(warName);
+        if (checkName !== null) {
+            alert('This name is already exist!');
+            return;
+        } else if (warName == '' || warName.length > 10) {
+            return;
+        } else {
+            warName = warName.replace(/\s/g, '');
+            const img = $('<img />').attr({
+                'id': warName,
+                'src': 'img/wardrobe.svg',
+                'class': 'myWardrobe',
+                'width': 96.55,
+                'height': 100,
+                'href': '#wardrobe-cats'
+            }).appendTo('.menu-wardrobe');
 
-    $("#" + warName).wrap($('<a>', {
-        href: '#wardrobe-cats'
-    }));
+            moveToWardrobeCats(warName);
 
-    wardrobe = warName;
-    $('.menu-wardrobe').append(warName);
-    warName = '';
-    
+
+            wardrobe = warName;
+            $('.menu-wardrobe').append(warName);
+            warName = '';
+        }
+
+
 
     });
     //$('#war-nr').text(wardrobe);
-    
-        //dodawanie list z tagami do zdjecia
+
+    //dodawanie list z tagami do zdjecia
 
     var target = $("div#target");
     var n = function () {
@@ -441,7 +450,7 @@ $(document).ready(function () {
                 labels: [date[0], date[1], date[2], date[3], date[4]],
                 datasets: [{
                     label: "Temperature",
-                    borderColor: "#80b6f4",                   
+                    borderColor: "#80b6f4",
                     pointBorderColor: "#80b6f4",
                     pointBackgroundColor: "#80b6f4",
                     pointHoverBackgroundColor: "#80b6f4",
@@ -460,11 +469,11 @@ $(document).ready(function () {
                 legend: {
                     display: false
                 },
-                tooltips: {       
+                tooltips: {
                     displayColors: false,
                     bodyFontSize: 14,
                     callbacks: {
-                        label: function(tooltipItems, data) { 
+                        label: function (tooltipItems, data) {
                             return tooltipItems.yLabel + '°C';
                         }
                     }
