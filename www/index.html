@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
@@ -339,75 +340,79 @@
 
         <div id="containerImg">
         </div>
-        
-        <!--te te te pod zdjeciem, jak potrzeba więcej takich, to kopiuj-wklej-->
-        
 
-        
+        <!--te te te pod zdjeciem, jak potrzeba więcej takich, to kopiuj-wklej-->
+
+
+
         <div class="conty">
-          <div class="panel panel-primary">
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="row" id="target">
-                    <div class="col-sm-2">
-                      <div class="categories"><span>Category:</span>
-                          <select class="form-control">
-                              <option>Select</option>
-                              <option>Tops & Sweaters</option>
-                              <option>Dresses</option>
-                              <option>Skirts & Shorts</option>
-                              <option>Trousers</option>
-                              <option>Outerwear</option>
-                              <option>Footwear</option>
-                              <option>Headgear</option>
-                          </select>
-                      </div>
-                        
-                        <form>
-                            <div class="ranges">
-                                <div><span>Temperature range:</span>
-                                <input id="range-from"  min="-80" max="100" value="-15°C">
-                                <input id="range-to" min="-80" max="100" value="100°C">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row" id="target">
+                                <div class="col-sm-2">
+                                    <div class="categories">
+                                        <span>Category:</span>
+                                        <select class="form-control">
+                                            <option>Select</option>
+                                            <option>Tops & Sweaters</option>
+                                            <option>Dresses</option>
+                                            <option>Skirts & Shorts</option>
+                                            <option>Trousers</option>
+                                            <option>Outerwear</option>
+                                            <option>Footwear</option>
+                                            <option>Headgear</option>
+                                        </select>
+                                    </div>
+
+                                    <form>
+                                        <div class="ranges">
+                                            <div>
+                                                <span>Temperature range:</span>
+                                                <input id="range-from" min="-80" max="100" value="-15°C">
+                                                <input id="range-to" min="-80" max="100" value="100°C">
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <div class="input-group">
+                                        <span>Weather:</span>
+                                        <select class="form-control">
+                                            <option>Select</option>
+                                            <option>Rain</option>
+                                            <option>Thunderstorm</option>
+                                            <option>Drizle</option>
+                                            <option>Snow</option>
+                                            <option>Clear</option>
+                                            <option>Clouds</option>
+                                        </select>
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-sm btn-link removeBtn">
+                                                <span class="fas fa-times"></span>
+                                            </button>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </form>
-                        
-                        <div class="input-group"><span>Weather:</span>
-                          <select class="form-control">
-                              <option>Select</option>
-                              <option>Rain</option>
-                              <option>Thunderstorm</option>
-                              <option>Drizle</option>
-                              <option>Snow</option>
-                              <option>Clear</option>
-                              <option>Clouds</option>
-                          </select>
-                        <span class="input-group-btn">
-                            <button class="btn btn-sm btn-link removeBtn">
-                            <span class="fas fa-times"></span>
-                        </button>
-                        </span>
-                      </div>
+                            <div class="row pull-right">
+                                <div class="col-xs-1">
+                                    <button class="btn btn-link btn-sm" id="add">
+                                        <span class="fas fa-plus"></span> Add Field</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="row pull-right">
-                    <div class="col-xs-1">
-                      <button class="btn btn-link btn-sm" id="add"><span class="fas fa-plus"></span> Add Field</button>
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-        
+
         <div>
             <button type="button" class="btn btn-back" onclick="window.location.href='#main'">
-            <i class="fas fa-chevron-left"></i>
+                <i class="fas fa-chevron-left"></i>
             </button>
-            <button type="button" class="btn btn-ok">
-            <i class="fas fa-check"></i>
+            <button id="btnAcceptImage" type="button" class="btn btn-ok">
+                <i class="fas fa-check"></i>
             </button>
         </div>
 
@@ -454,7 +459,7 @@
                 </ul>
             </div>
         </div>
-        
+
         <div>
             <button type="button" class="btn btn-love">
                 <i class="fas fa-heart"></i>

@@ -19,6 +19,7 @@ const btnFacebookLogin = document.getElementById('btnFacebookLogin');
 const btnLogOut = document.getElementById('btnLogOut');
 const txtEmailReset = document.getElementById('txtEmailReset');
 const btnSendPass = document.getElementById('btnSendPass');
+const btnAcceptImage = document.getElementById('btnAcceptImage');
 
 
 // Sign up with email and password
@@ -136,7 +137,8 @@ function openFilePicker(selection) {
 
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
         window.location.href = "#liamneeson";
-        uploadToStorage(imageUri);
+        displayImage(imageUri);
+        //uploadToStorage(imageUri);
 
     }, function cameraError(error) {
         console.debug("Unable to obtain picture: " + error, "app");
@@ -151,7 +153,8 @@ function openCamera(selection) {
 
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
         window.location.href = "#liamneeson";
-        uploadToStorage(imageUri);
+        displayImage(imageUri);
+        //uploadToStorage(imageUri);
 
     }, function cameraError(error) {
         console.debug("Unable to obtain picture: " + error, "app");
@@ -177,14 +180,14 @@ function setOptions(srcType) {
 // Show image in activity
 function displayImage(imgUri) {
     const imgContainer = document.getElementById('containerImg');
-    if (document.getElementById('addImg') == null) {
+    if (document.getElementById('addedImg') == null) {
         const img = document.createElement("img");
-        img.id = "addImg";
-        img.src = imgUri;
+        img.id = "addedImg";
+        img.src = 'data:image/png;base64,' + imgUri;
         img.style.width = "100%";
         containerImg.appendChild(img);
     } else {
-        document.getElementById('addImg').src = imgUri;
+        document.getElementById('addedImg').src = 'data:image/png;base64,' + imgUri;
     }
 }
 var warName;
@@ -205,6 +208,7 @@ function uploadToDatabase(downloadURL) {
     };
     updates['Users/' + getCurrentUser().uid + '/' + wardrobe + '/Category/' + postKey] = postData;
     firebase.database().ref().update(updates);
+    alert("successful send!");
 }
 
 // Takes the date and changes it to a unique name 
@@ -219,7 +223,7 @@ function getCurrentUser() {
 }
 
 function uploadToStorage(imgUri) {
-    var imgStorage = 'data:image/jpg;base64, ' + imgUri;
+    var imgStorage = imgUri;
 
     var storageRef = firebase.storage().ref(getCurrentUser().uid + '/' + 'Clothes/' + uniqueNameFile());
     var uploadTask = storageRef.putString(imgStorage, 'data_url');
@@ -230,10 +234,16 @@ function uploadToStorage(imgUri) {
     }, function () {
         var downloadURL = uploadTask.snapshot.downloadURL;
         uploadToDatabase(downloadURL);
-        displayImage(downloadURL);
+        //displayImage(downloadURL);
 
     });
 }
+
+btnAcceptImage.addEventListener('click', function () {
+    const imgUri = document.getElementById('addedImg').src;
+    uploadToStorage(imgUri);
+    window.location.href = '#wardrobe-cats';
+});
 
 function loadWardrobes() {
 
@@ -249,6 +259,8 @@ function loadWardrobes() {
 function moveToWardrobeCats(getElement) {
     const wardrobeButton = document.getElementById(getElement);
     wardrobeButton.addEventListener('click', function () {
+        document.getElementById('war-nr').innerHTML = getElement;
+        wardrobe = getElement;
         window.location.href = '#wardrobe-cats';
     });
 }
@@ -336,16 +348,13 @@ $(document).ready(function () {
                 'href': '#wardrobe-cats'
             }).appendTo('.menu-wardrobe');
 
+            $('.menu-wardrobe').append(warName);
+            warName = '';
+
             moveToWardrobeCats(warName);
 
 
-            wardrobe = warName;
-            $('.menu-wardrobe').append(warName);
-            warName = '';
         }
-
-
-
     });
     //$('#war-nr').text(wardrobe);
 
