@@ -23,6 +23,7 @@ var wardrobe;
 var category;
 var warName;
 var selectedCategory;
+var selectedWeather;
 // Sign up with email and password
 btnSignUp.addEventListener('click', function () {
     const email = txtEmailRegistration.value;
@@ -202,11 +203,16 @@ function setWardrobeName() {
     warName = name;
 }
 function uploadToDatabase(downloadURL) {
-
+    var minTemp = $('#range-from').val();
+    var maxTemp = $('#range-to').val();
     var postKey = firebase.database().ref('Users/' + getCurrentUser().uid + '/' + wardrobe + '/' + selectedCategory + '/').push().key;
     var updates = {};
     var postData = {
-        url: downloadURL
+        url: downloadURL,
+        //category: selectedCategory, // nwm czy to nie będzie potrzebne w tym miejscu do losowania??
+        minTemp: minTemp,
+        maxTemp: maxTemp,
+        weather: selectedWeather
     };
     updates['Users/' + getCurrentUser().uid + '/' + wardrobe + '/' + selectedCategory + '/' + postKey] = postData;
     firebase.database().ref().update(updates);
@@ -252,7 +258,7 @@ function loadWardrobes() {
     var token = getCurrentUser().uid;
     if (getCurrentUser()) {
         // User is signed in.
-        queryDatabse(token);
+        queryDatabseForWardrobes(token);
     } else {
         // No user is signed in.
     }
@@ -268,9 +274,8 @@ function moveToWardrobeCats(getElement) {
 }
 
 
-// na razie chciałam, żeby przy zalogowaniu dodało od razu istniejące szafy, tego once tam trzeba się będzie pozbyć później
-function queryDatabse(token) {
-    console.log("guery database " + token);
+function queryDatabseForWardrobes(token) {
+    
     return firebase.database().ref('Users/' + token + '/').once('value').then(function (snapshot) {
         var postObject = snapshot.val();
         if (postObject == null) {
@@ -309,15 +314,18 @@ function loadClothes(){
 }
 // download and display clothes for particular wardrobe and category
 function queryDatabseForClothes(token) {
+   
     return firebase.database().ref('Users/' + getCurrentUser().uid + '/' + wardrobe + '/' + category + '/').on('value', function(snapshot) {
         var postObject = snapshot.val();
-        console.log("postobject val " + postObject);
+        if (postObject === null) {
+            return;
+        }
         var keys = Object.keys(postObject);
         var currentRow;
         for(var i = 0; i < keys.length; i++)
         {
             var currentObj = postObject[keys[i]];
-            console.log("current obj url " + currentObj.url);
+            
             //new row on every 3 entry
             // col-lg-4
             if ( i % 3 == 0){
@@ -335,18 +343,7 @@ function queryDatabseForClothes(token) {
         }
 
     });
-
 }
-
-/*function getActivePage(){
-    return window.location.href;
-}
-
-$(document).on('pageshow', 'body', function() { // id aktywnej str
-   //console.log($.mobile.activePage.attr('id'));
-});*/
-
-
 
 //Mobile navigation
 $(document).ready(function () {
@@ -397,20 +394,21 @@ $(document).ready(function () {
 
     // get the category name, launch function for loading clothes
     $('#wear span').click(function () {
-        
          category = $(this).attr("id");
-         loadClothes();
-        console.log('kategoria user klika' + category);
-       
+         loadClothes();       
     });
-    // get the selected category by user
+
+    // get the selected by user category 
     $('#selectCategory').change(function () {
        selectedCategory = $('#selectCategory').val();
-        console.log('kategoria user chce wysłać do bazy' + selectedCategory);
+    });
+
+    // get the selected by user weather
+    $('#selectWeather').change(function () {
+       selectedWeather = $('#selectWeather').val();
     });
 
     //dodawanie list z tagami do zdjecia
-
     var target = $("div#target");
     var n = function () {
         return $("div.col-xs-2").length;
