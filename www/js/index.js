@@ -360,7 +360,7 @@ $(document).ready(function () {
     });
 
     function createWardrobeImg(name) {
-        return $('<div/>')
+        return $('<div/>') //tutaj opakowuję każdą szafę wraz z podpisem, żeby łatwiej je pozycjonować
             .append($('<img />').attr({
                 'id': warName,
                 'src': 'img/wardrobe.svg',

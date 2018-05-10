@@ -543,15 +543,18 @@ b:hover{
     text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 }
 
+/* selector na divy dodane bezpośrednio do elementu z klasą .menu-wardrobe, czyli te opakowujące obrazki i podpisy*/
 .menu-wardrobe>div {
-    float:left;
-    width:100px;
-    margin:20px;
+    float:left;/* dzięki temu układają się w rzędzie */
+    width:100px;/*szerokość określa ostateczny rozmiar obrazka, który domyślnie zachowuje proporcje*/
+    margin:20px;/*tutaj manipulujesz odległością pomiędzy obrazkami*/
 }
 
+/* selector na obrazki z szafami. Dodałem jakbyś chciała je jakoś dodatkowo ostylować (tło, transparentność itp.). Jeśli nie, to możesz wywalić */
 .menu-wardrobe>div>img {
 }
 
+/* selector na div z podpisem. Tutaj możesz ostylować czcionkę itp. Ja jedynie wyśrodkowałem.*/
 .menu-wardrobe>div>div {
     text-align:center;
 }
